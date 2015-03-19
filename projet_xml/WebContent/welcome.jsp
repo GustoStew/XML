@@ -25,7 +25,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/XML/welcome.jsp">Accueil <i class="glyphicon glyphicon-home"></i></a>
+      <a class="navbar-brand" href="/projet_xml/welcome.jsp">Accueil <i class="glyphicon glyphicon-home"></i></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,16 +35,16 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Amis <span class="badge"><% out.println(user.getFriendCount()); %></span></a>
           <ul class="dropdown-menu" role="menu">
             <% if(user.getFriendCount()!=0)
-            	out.println("<li><a href=\"/XML/consultListFriend.jsp\">Consulter</a></li>");%>
-            <li><a href="/XML/newFriendForm.jsp">Ajouter</a></li>
+            	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
+            <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Groupes <span class="badge"><% out.println(user.getGroupCount());%></span></a>
           <ul class="dropdown-menu" role="menu">
-          <% if(user.getFriendCount()!=0)
-        	  out.println("<li><a href=\"#\">Consulter</a></li>");%>
-            <li><a href="#">Ajouter</a></li>           
+          <% if(user.getGroupCount()!=0)
+        	  out.println("<li><a href=\"/projet_xml/consultListGroup.jsp\">Consulter</a></li>");%>
+            <li><a href="/projet_xml/newGroupForm.jsp">Ajouter</a></li>           
           </ul>
         </li>
       </ul>

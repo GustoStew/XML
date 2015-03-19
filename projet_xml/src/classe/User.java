@@ -90,8 +90,11 @@ public class User {
 		groups.put(name, tmp);
 		groupCount = groups.size();
 	}
-	
+	public void addFriend(Friend f){
+		friends.put(f.getMail(), f);
+	}
 	public void addFriend(Friend f, String nameGroup){
+		addFriend(f);
 		Group g = groups.get(nameGroup);
 		g.addFriendToGroup(f);
 		int count = 0;
