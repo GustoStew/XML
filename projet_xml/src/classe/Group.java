@@ -1,6 +1,8 @@
 package classe;
 
-import java.util.HashMap;;
+
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Group {
 	private String name;
@@ -33,6 +35,17 @@ public class Group {
 	
 	public void addFriendToGroup(Friend f){
 		members.put(f.getMail(), f);
+		f.getGroups().add(name);
+	}
+	
+	public void deleteFriend(Friend f){
+		members.remove(f.getMail());
+		Iterator<String> iterator = f.getGroups().iterator();
+		while(iterator.hasNext()){
+			String s = iterator.next();
+			if(s.equals(name))
+				iterator.remove();
+		}
 	}
 	
 }

@@ -27,16 +27,13 @@ public class infoFriend extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		System.out.println("idfriend"+request.getParameter("friend"));
 		String idFriend = request.getParameter("friend");
-		Friend f = new Friend();
-		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
-			if(groupTmp.getValue().getMembers().containsKey(idFriend)){
-				f = groupTmp.getValue().getMembers().get(idFriend);
-				break;}
+		for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
+			if(friendTmp.getKey().equals(idFriend)){
+				session.setAttribute("currentFriend",friendTmp.getValue());
+				break;
+			}
 		}
-		System.out.println(f.getLastName());
-		session.setAttribute("currentFriend",f);
 		this.getServletContext().getRequestDispatcher("/consultInfoFriend.jsp").forward(request, response);
 	}
 

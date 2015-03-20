@@ -10,39 +10,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import classe.*
-;
-@WebServlet("/NewFriend")
-public class NewFriend extends HttpServlet {
+import classe.Group;
+import classe.User;
+
+
+@WebServlet("/InfoGroup")
+public class InfoGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public NewFriend() {
+    
+    public InfoGroup() {
         super();
-       
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Friend tmp = new Friend(request.getParameter("firstname"), 
-								request.getParameter("lastname"), 
-								request.getParameter("mail"), 
-								request.getParameter("phone"), 
-								request.getParameter("address"));
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		user.addFriend(tmp);
+		String idGroup = request.getParameter("group");
 		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
-			if(request.getParameter(groupTmp.getKey())!=null)
-				groupTmp.getValue().addFriendToGroup(tmp);
+			if(groupTmp.getKey().equals(idGroup)){
+				session.setAttribute("currentGroup", groupTmp.getValue());
+				break;
+			}
 		}
-		session.setAttribute("user", user);
-		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/consultInfoGroup.jsp").forward(request, response);
 	}
 
 }

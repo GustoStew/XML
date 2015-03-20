@@ -70,46 +70,47 @@
 				<div class="input-group">
 					<span class="input-group-addon">Prénom</span> <input type="text"
 						class="form-control" id="firstname" name="firstname"
-						placeholder="Françcois">
+						placeholder="François" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">Nom</span> <input type="text"
 						class="form-control" id="lastname" name="lastname"
-						placeholder="Durand">
+						placeholder="Durand" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon"> Adresse @</span> <input
 						type="email" class="form-control" id="mail" name="mail"
-						placeholder="XXX@exemple.com">
+						placeholder="XXX@exemple.com" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">Téléphone</span> <input type="text"
 						class="form-control" id="phone" name="phone"
-						placeholder="0610203040">
+						placeholder="0610203040" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">Adresse</span> <input type="text"
 						class="form-control" id="address" name="address"
-						placeholder="15 rue des peupliers 33000 BORDEAUX">
+						placeholder="15 rue des peupliers 33000 BORDEAUX" required>
 				</div>
 			</div>
+			<h3>Choisissez un(des) groupe(s)</h3>
 			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Groupe</span>
-					<select class="form-control" id="group" name="group">
-						<% for(Entry<String, Group> tmp : user.getGroups().entrySet()){
-        				out.println("<option value=\""+ tmp.getKey() + "\">" + tmp.getKey()+ "</option>");  
-          				}%>
-					</select>
-				</div>
+				 <% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){
+					out.println("<div class=\"checkbox\">");
+					out.println("<label>");
+					out.println("<input type=\"checkbox\" id=\"" + groupTmp.getKey() + "\" name=\"" + groupTmp.getKey() + "\" > " + groupTmp.getKey() + "");
+					out.println("</label>");
+					out.println("</div>");
+				}
+				%>
 			</div>
 			<button type="submit" class="btn btn-default">Ajouter</button>
 		</form>

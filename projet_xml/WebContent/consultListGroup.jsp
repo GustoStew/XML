@@ -76,7 +76,7 @@
  							out.println("<td>"+g.getName()+"</td>");
   							out.println("<td>"+g.getMembers().size()+"</td>");
   							out.println("<td>");
-  							out.println("<form role=\"form\" action=\"/projet_xml/infoGroup\" method=\"post\">");
+  							out.println("<form role=\"form\" action=\"/projet_xml/InfoGroup\" method=\"post\">");
   							if(g.getMembers().size()!=0)
   								out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"group\" value=\""+g.getName()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
   							else

@@ -7,8 +7,8 @@
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
-	<jsp:useBean id="currentFriend" scope="session" class="classe.Friend"></jsp:useBean>
-  <title><% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%></title>
+	<jsp:useBean id="currentGroup" scope="session" class="classe.Group"></jsp:useBean>
+  <title><% out.println(currentGroup.getName());%></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -32,7 +32,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active" class="btn-group">
+        <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Amis <span class="badge"><% out.println(user.getFriendCount()); %></span></a>
           <ul class="dropdown-menu" role="menu">
             <% if(user.getFriendCount()!=0)
@@ -40,7 +40,7 @@
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
-        <li class="btn-group">
+        <li class="active" class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Groupes <span class="badge"><% out.println(user.getGroupCount());%></span></a>
           <ul class="dropdown-menu" role="menu">
           <% if(user.getFriendCount()!=0)
@@ -60,23 +60,55 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-<h2><% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%></h2>
-<h3>Ses informations</h3>
-<h4><span class="label label-default">Prénom</span> <% out.println(currentFriend.getFirstName());%></h4>
-<h4><span class="label label-default">Nom</span> <% out.println(currentFriend.getLastName());%></h4>
-<h4><span class="label label-default">Mail</span> <% out.println(currentFriend.getMail());%></h4>
-<h4><span class="label label-default">Téléphone</span> <% out.println(currentFriend.getPhone());%></h4>
-<h4><span class="label label-default">Adresse</span> <% out.println(currentFriend.getAddress());%></h4>
-<% if(currentFriend.getGroups().size()!=0){
-	out.println("<h3>Ses groupes</h3>");
-	for(String idGroup : currentFriend.getGroups()){
-		out.println("<h4><span class=\"label label-default\">" + idGroup + "</span></h4>");
-	}
-}
-%>
-<br>
-<a href="#" id="modify" class="btn btn-default"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
-<a href="#" id="delete" class="btn btn-default"> Supprimer <i class="glyphicon glyphicon-trash"></i></a>
-</div>
+      <h2><% out.println(currentGroup.getName());%></h2>                                                                                   
+      <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Mail</th>
+            <th>Infos</th>
+            <th>Supprimer</th>
+          </tr>
+        </thead>
+        <tbody>
+        	 <% for(Entry<String, Friend> friendTmp : currentGroup.getMembers().entrySet()){
+  							Friend f = friendTmp.getValue();
+  							out.println("<tr>");
+ 							out.println("<td>"+f.getLastName()+"</td>");
+  							out.println("<td>"+f.getFirstName()+"</td>");
+  							out.println("<td>"+f.getMail()+"</td>");
+  							out.println("<td>");
+  							out.println("<form role=\"form\" action=\"/projet_xml/infoFriend\" method=\"post\">");
+  							out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
+  							out.println("</form>");
+  							out.println("</td>");
+  							out.println("<td>");
+  							out.println("<form role=\"form\" action=\"/projet_xml/DeleteFriendFromGroup\" method=\"post\">");
+  							out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
+  							out.println("</form>");
+  							out.println("</td>");
+  							out.println("</tr>");
+  					}%>
+        </tbody>
+      </table>
+      </div>
+      <h3>Ajouter un ami</h3>
+      <form role="form" action="/projet_xml/AddFriendToGroup" method="post">
+      	<div class="form-group">
+      		<div class="input-group">
+      			<select class="form-control" id="friend" name="friend">
+      				<% for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
+      						if(!currentGroup.getMembers().containsKey(friendTmp.getKey()))
+      							out.println("<option value=\""+ friendTmp.getKey() + "\">" + friendTmp.getValue().getLastName() + " " + friendTmp.getValue().getFirstName() + "</option>");
+      					}
+      				%>
+      			</select>
+      		</div>
+      	</div>
+      	<button type="submit" class="btn btn-default">Ajouter</button>
+      </form>
+    </div>
 </body>
 </html>

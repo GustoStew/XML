@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,39 +9,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import classe.*
-;
-@WebServlet("/NewFriend")
-public class NewFriend extends HttpServlet {
+import classe.Friend;
+import classe.Group;
+import classe.User;
+
+
+@WebServlet("/DeleteFriendFromGroup")
+public class DeleteFriendFromGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public NewFriend() {
+    public DeleteFriendFromGroup() {
         super();
-       
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Friend tmp = new Friend(request.getParameter("firstname"), 
-								request.getParameter("lastname"), 
-								request.getParameter("mail"), 
-								request.getParameter("phone"), 
-								request.getParameter("address"));
 		HttpSession session = request.getSession();
+		Group currentGroup = (Group) session.getAttribute("currentGroup");
 		User user = (User) session.getAttribute("user");
-		user.addFriend(tmp);
-		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
-			if(request.getParameter(groupTmp.getKey())!=null)
-				groupTmp.getValue().addFriendToGroup(tmp);
-		}
-		session.setAttribute("user", user);
-		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		String idFriend = request.getParameter("friend");
+		Friend friendTmp = user.getFriends().get(idFriend);
+		System.out.println(friendTmp.getGroups().size());
+		currentGroup.deleteFriend(friendTmp);
+		System.out.println(friendTmp.getGroups().size());
+		this.getServletContext().getRequestDispatcher("/consultInfoGroup.jsp").forward(request, response);
 	}
 
 }

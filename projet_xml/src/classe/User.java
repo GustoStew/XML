@@ -92,16 +92,7 @@ public class User {
 	}
 	public void addFriend(Friend f){
 		friends.put(f.getMail(), f);
-	}
-	public void addFriend(Friend f, String nameGroup){
-		addFriend(f);
-		Group g = groups.get(nameGroup);
-		g.addFriendToGroup(f);
-		int count = 0;
-		for(Entry<String, Group> tmp : getGroups().entrySet()){
-    		count += tmp.getValue().getMembers().size();  
-      }
-		friendCount = count;
+		friendCount++;
 	}
 	
 	public HashMap<String, Group> getGroups() {
@@ -126,6 +117,5 @@ public class User {
 				tmp.getValue().getMembers().remove(keyFriend);
 		}
 		Friend newFriend = new Friend(firstName, lastName, mail, phone, address);
-		addFriend(newFriend, nameGroup);
 	}
 }
