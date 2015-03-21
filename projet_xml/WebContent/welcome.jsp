@@ -61,12 +61,21 @@
 <div class="container">
 	<h2>Bonjour <% out.println(user.getFirstName());%> !</h2>
 	<h3>Vos informations</h3>
-	<h4><span class="label label-default">Prénom</span> <% out.println(user.getFirstName());%></h4>
-	<h4><span class="label label-default">Nom</span> <% out.println(user.getLastName());%></h4>
-	<h4><span class="label label-default">Mail</span> <% out.println(user.getMail());%></h4>
-	<h4><span class="label label-default">Téléphone</span> <% out.println(user.getPhone());%></h4>
-	<h4><span class="label label-default">Adresse</span> <% out.println(user.getAddress());%></h4>
-	<a href="#" id="modify" class="btn btn-default"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
+	<div class="col-md-1">
+		<h4><span class="label label-info">Prénom</span></h4>
+		<h4><span class="label label-info">Nom</span></h4>
+		<h4><span class="label label-info">Mail</span></h4> 
+		<h4><span class="label label-info">Téléphone</span></h4>
+		<h4><span class="label label-info">Adresse</span></h4>
+		<a href="#" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
+	</div>
+	<div class="col-md-3">
+		<h4><% out.println(user.getFirstName());%></h4>
+		<h4><% out.println(user.getLastName());%></h4>
+		<h4><% out.println(user.getMail());%></h4>
+		<h4><% out.println(user.getPhone());%></h4>
+		<h4><% out.println(user.getAddress());%></h4>
+	</div>
 </div>
 </body>
 </html>

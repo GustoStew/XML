@@ -60,7 +60,9 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-      <h2><% out.println(currentGroup.getName());%></h2>                                                                                   
+         
+      <div class="col-md-8"> 
+      <h2><% out.println(currentGroup.getName());%></h2>                                                                               
       <div class="table-responsive">          
       <table class="table">
         <thead>
@@ -73,20 +75,20 @@
           </tr>
         </thead>
         <tbody>
-        	 <% for(Entry<String, Friend> friendTmp : currentGroup.getMembers().entrySet()){
-  							Friend f = friendTmp.getValue();
+        	 <% for(String idFriend : currentGroup.getMembers()){
+  							Friend f = user.getFriends().get(idFriend);
   							out.println("<tr>");
  							out.println("<td>"+f.getLastName()+"</td>");
   							out.println("<td>"+f.getFirstName()+"</td>");
   							out.println("<td>"+f.getMail()+"</td>");
   							out.println("<td>");
   							out.println("<form role=\"form\" action=\"/projet_xml/infoFriend\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
+  							out.println("<button type=\"submit\" class=\"btn btn-info btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
   							out.println("</form>");
   							out.println("</td>");
   							out.println("<td>");
   							out.println("<form role=\"form\" action=\"/projet_xml/DeleteFriendFromGroup\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
+  							out.println("<button type=\"submit\" class=\"btn btn-danger btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
   							out.println("</form>");
   							out.println("</td>");
   							out.println("</tr>");
@@ -94,13 +96,17 @@
         </tbody>
       </table>
       </div>
+      </div>
+      </div>
+      <div class="container">
+      <div class="col-md-8">
       <h3>Ajouter un ami</h3>
       <form role="form" action="/projet_xml/AddFriendToGroup" method="post">
       	<div class="form-group">
       		<div class="input-group">
       			<select class="form-control" id="friend" name="friend">
       				<% for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
-      						if(!currentGroup.getMembers().containsKey(friendTmp.getKey()))
+      						if(!currentGroup.getMembers().contains(friendTmp.getKey()))
       							out.println("<option value=\""+ friendTmp.getKey() + "\">" + friendTmp.getValue().getLastName() + " " + friendTmp.getValue().getFirstName() + "</option>");
       					}
       				%>
@@ -109,6 +115,13 @@
       	</div>
       	<button type="submit" class="btn btn-default">Ajouter</button>
       </form>
+      <br>
+      <a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
+    </div>
+    </div>
+    <br>
+    <div class="container">
+    
     </div>
 </body>
 </html>

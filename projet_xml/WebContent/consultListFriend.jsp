@@ -31,7 +31,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li classe="active" class="btn-group">
+        <li class="active" class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Amis <span class="badge"><% out.println(user.getFriendCount()); %></span></a>
           <ul class="dropdown-menu" role="menu">
             <% if(user.getFriendCount()!=0)
@@ -58,8 +58,9 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
-      <h2>Liste de vos amis</h2>                                                                                   
+<div class="container"> 
+      <div class="col-md-8">
+      <h2>Liste de vos amis</h2>                                                                                  
       <div class="table-responsive">          
       <table class="table">
         <thead>
@@ -68,6 +69,7 @@
             <th>Prénom</th>
             <th>Mail</th>
             <th>Infos</th>
+            <th>Supprimer</th>
           </tr>
         </thead>
         <tbody>
@@ -79,7 +81,12 @@
   							out.println("<td>"+f.getMail()+"</td>");
   							out.println("<td>");
   							out.println("<form role=\"form\" action=\"/projet_xml/infoFriend\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
+  							out.println("<button type=\"submit\" class=\"btn btn-info btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
+  							out.println("</form>");
+  							out.println("</td>");
+  							out.println("<td>");
+  							out.println("<form role=\"form\" action=\"/projet_xml/DeleteFriend\" method=\"post\">");
+  							out.println("<button type=\"submit\" class=\"btn btn-danger btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
   							out.println("</form>");
   							out.println("</td>");
   							out.println("</tr>");
@@ -87,6 +94,7 @@
         </tbody>
       </table>
       </div>
+    </div>
     </div>
 </body>
 </html>

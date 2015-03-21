@@ -28,12 +28,8 @@ public class infoFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String idFriend = request.getParameter("friend");
-		for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
-			if(friendTmp.getKey().equals(idFriend)){
-				session.setAttribute("currentFriend",friendTmp.getValue());
-				break;
-			}
-		}
+		Friend f = user.getFriends().get(idFriend);
+		session.setAttribute("currentFriend", f);
 		this.getServletContext().getRequestDispatcher("/consultInfoFriend.jsp").forward(request, response);
 	}
 

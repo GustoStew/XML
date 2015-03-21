@@ -1,6 +1,8 @@
 package classe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
 public class User {
@@ -90,9 +92,52 @@ public class User {
 		groups.put(name, tmp);
 		groupCount = groups.size();
 	}
+	
+	public boolean friendExist(String idFriend){
+		return getFriends().containsKey(idFriend);
+	}
+	
+	public boolean groupExist(String idGroup){
+		return getGroups().containsKey(idGroup);
+	}
+	
+	public boolean hasNoFriends(){
+		return friendCount==0;
+	}
+	
+	public boolean hasNoGroups(){
+		return groupCount==0;
+	}
+	
 	public void addFriend(Friend f){
 		friends.put(f.getMail(), f);
 		friendCount++;
+	}
+	
+	public void deleteFriend(String idFriend){
+		Friend friendTmp = getFriends().get(idFriend);
+		ArrayList<String> listGroupTmp = new ArrayList<String>(friendTmp.getGroups());
+		for(String idGroup : listGroupTmp){
+			deleteFriendFromGroup(idFriend, idGroup);
+		}
+		friends.remove(idFriend);
+		friendCount--;
+	}
+	
+	public void deleteFriendFromGroup(String idFriend, String idGroup){
+		Friend f = getFriends().get(idFriend);
+		Group g = getGroups().get(idGroup);
+		g.deleteFriend(f);
+	}
+	
+	public void deleteGroup(String idGroup){
+		Group groupTmp = getGroups().get(idGroup);
+		ArrayList<String> listFriendTmp = new ArrayList<String>(groupTmp.getMembers());
+		for(String idFriend : listFriendTmp){
+			deleteFriendFromGroup(idFriend, idGroup);
+		}
+		groups.remove(idGroup);
+		groupCount--;
 	}
 	
 	public HashMap<String, Group> getGroups() {
@@ -111,11 +156,11 @@ public class User {
 		this.friends = friends;
 	}
 
-	public void modifyFriend(String keyFriend, String firstName, String lastName, String mail, String phone, String address, String nameGroup){
+	/*public void modifyFriend(String keyFriend, String firstName, String lastName, String mail, String phone, String address, String nameGroup){
 		for(Entry<String, Group> tmp : groups.entrySet()){
 			if(tmp.getValue().getMembers().containsKey(keyFriend))
 				tmp.getValue().getMembers().remove(keyFriend);
 		}
 		Friend newFriend = new Friend(firstName, lastName, mail, phone, address);
-	}
+	}*/
 }

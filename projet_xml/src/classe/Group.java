@@ -1,12 +1,12 @@
 package classe;
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Group {
 	private String name;
-	private HashMap<String, Friend> members;
+	private ArrayList<String> members;
 	
 	public Group() {
 		super();
@@ -14,7 +14,7 @@ public class Group {
 	
 	public Group(String name){
 		this.name=name;
-		members = new HashMap<String, Friend>();
+		members = new ArrayList<String>();
 	}
 
 	public String getName() {
@@ -25,26 +25,31 @@ public class Group {
 		this.name = name;
 	}
 
-	public HashMap<String, Friend> getMembers() {
+	public ArrayList<String> getMembers() {
 		return members;
 	}
 
-	public void setMembers(HashMap<String, Friend> members) {
+	public void setMembers(ArrayList<String> members) {
 		this.members = members;
 	}
-	
+
 	public void addFriendToGroup(Friend f){
-		members.put(f.getMail(), f);
+		members.add(f.getMail());
 		f.getGroups().add(name);
+		System.out.println(f.getMail());
 	}
 	
 	public void deleteFriend(Friend f){
-		members.remove(f.getMail());
+		if(members.remove(f.getMail())){
+			System.out.println(f.getMail() + " supprimé de " + name);
+		}
 		Iterator<String> iterator = f.getGroups().iterator();
 		while(iterator.hasNext()){
 			String s = iterator.next();
-			if(s.equals(name))
+			if(s.equals(name)){
 				iterator.remove();
+				System.out.println(name + " enlevé de " + f.getMail());
+			}
 		}
 	}
 	

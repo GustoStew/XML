@@ -59,6 +59,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
+	<div class="col-md-6">
       <h2>Liste de vos groupes</h2>                                                                                   
       <div class="table-responsive">          
       <table class="table">
@@ -67,6 +68,7 @@
             <th>Nom</th>
             <th>Nombre d'amis</th>
             <th>Infos</th>
+            <th>Supprimer</th>
           </tr>
         </thead>
         <tbody>
@@ -77,10 +79,12 @@
   							out.println("<td>"+g.getMembers().size()+"</td>");
   							out.println("<td>");
   							out.println("<form role=\"form\" action=\"/projet_xml/InfoGroup\" method=\"post\">");
-  							if(g.getMembers().size()!=0)
-  								out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" name=\"group\" value=\""+g.getName()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
-  							else
-  								out.println("<button type=\"submit\" class=\"btn btn-default btn-md\" disabled=\"disabled\" name=\"group\" value=\""+g.getName()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
+  							out.println("<button type=\"submit\" class=\"btn btn-info btn-md\" name=\"group\" value=\""+g.getName()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
+  							out.println("</form>");
+  							out.println("</td>");
+  							out.println("<td>");
+  							out.println("<form role=\"form\" action=\"/projet_xml/DeleteGroup\" method=\"post\">");
+  							out.println("<button type=\"submit\" class=\"btn btn-danger btn-md\" name=\"group\" value=\""+g.getName()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
   							out.println("</form>");
   							out.println("</td>");
   							out.println("</tr>");
@@ -89,6 +93,7 @@
         </tbody>
       </table>
       </div>
+    </div>
     </div>
 </body>
 </html>

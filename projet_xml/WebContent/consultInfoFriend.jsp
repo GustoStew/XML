@@ -60,23 +60,23 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-<h2><% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%></h2>
-<h3>Ses informations</h3>
-<h4><span class="label label-default">Prénom</span> <% out.println(currentFriend.getFirstName());%></h4>
-<h4><span class="label label-default">Nom</span> <% out.println(currentFriend.getLastName());%></h4>
-<h4><span class="label label-default">Mail</span> <% out.println(currentFriend.getMail());%></h4>
-<h4><span class="label label-default">Téléphone</span> <% out.println(currentFriend.getPhone());%></h4>
-<h4><span class="label label-default">Adresse</span> <% out.println(currentFriend.getAddress());%></h4>
-<% if(currentFriend.getGroups().size()!=0){
-	out.println("<h3>Ses groupes</h3>");
-	for(String idGroup : currentFriend.getGroups()){
-		out.println("<h4><span class=\"label label-default\">" + idGroup + "</span></h4>");
-	}
-}
-%>
+	<h2><% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%></h2>
+	<h3>Ses informations</h3>
+	<h4><span class="label label-default">Prénom</span> <% out.println(currentFriend.getFirstName());%></h4>
+	<h4><span class="label label-default">Nom</span> <% out.println(currentFriend.getLastName());%></h4>
+	<h4><span class="label label-default">Mail</span> <% out.println(currentFriend.getMail());%></h4>
+	<h4><span class="label label-default">Téléphone</span> <% out.println(currentFriend.getPhone());%></h4>
+	<h4><span class="label label-default">Adresse</span> <% out.println(currentFriend.getAddress());%></h4>
+	<% if(currentFriend.getGroups().size()!=0){
+			out.println("<h3>Ses groupes</h3>");
+			for(String idGroup : currentFriend.getGroups()){
+				out.println("<h4><span class=\"label label-info\">" + idGroup + "</span></h4>");
+			}
+		}
+	%>
 <br>
-<a href="#" id="modify" class="btn btn-default"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
-<a href="#" id="delete" class="btn btn-default"> Supprimer <i class="glyphicon glyphicon-trash"></i></a>
+<a href="#" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
+<a href="/projet_xml/DeleteFriend" id="delete" class="btn btn-danger"> Supprimer <i class="glyphicon glyphicon-trash"></i></a>
 </div>
 </body>
 </html>
