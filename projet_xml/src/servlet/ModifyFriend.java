@@ -15,11 +15,11 @@ import classe.Group;
 import classe.User;
 
 
-@WebServlet("/ModiFyFriend")
-public class ModiFyFriend extends HttpServlet {
+@WebServlet("/ModifyFriend")
+public class ModifyFriend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ModiFyFriend() {
+    public ModifyFriend() {
         super();
     }
 

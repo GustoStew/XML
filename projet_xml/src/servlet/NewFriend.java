@@ -36,7 +36,6 @@ public class NewFriend extends HttpServlet {
 								request.getParameter("mail"), 
 								request.getParameter("phone"), 
 								request.getParameter("address"));
-		
 		user.addFriend(newFriend);
 		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
 			if(request.getParameter(groupTmp.getKey())!=null)

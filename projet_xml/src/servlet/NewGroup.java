@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import util.XmlSerializer;
 import classe.*;
 
 @WebServlet("/NewGroup")
@@ -26,7 +28,11 @@ public class NewGroup extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		user.addGroup(request.getParameter("name"));
-		session.setAttribute("user", user);
+		XmlSerializer serial = new XmlSerializer("/Users/germainleguen/Dev/"+ user.getFirstName() + ".xml");
+		System.out.println(serial.getFile());
+		serial.save(user);
+		User userRecup = serial.getLastSave();
+		session.setAttribute("user", userRecup);
 		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
 	}
 
