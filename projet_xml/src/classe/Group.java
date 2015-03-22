@@ -33,22 +33,18 @@ public class Group {
 		this.members = members;
 	}
 
-	public void addFriendToGroup(Friend f){
+	public void addFriend(Friend f){
 		members.add(f.getMail());
 		f.getGroups().add(name);
-		System.out.println(f.getMail());
 	}
 	
 	public void deleteFriend(Friend f){
-		if(members.remove(f.getMail())){
-			System.out.println(f.getMail() + " supprimé de " + name);
-		}
+		members.remove(f.getMail());
 		Iterator<String> iterator = f.getGroups().iterator();
 		while(iterator.hasNext()){
 			String s = iterator.next();
 			if(s.equals(name)){
 				iterator.remove();
-				System.out.println(name + " enlevé de " + f.getMail());
 			}
 		}
 	}

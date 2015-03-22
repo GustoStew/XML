@@ -75,7 +75,7 @@
 		}
 	%>
 <br>
-<a href="#" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
+<a href="/projet_xml/modifyFriend.jsp" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
 <a href="/projet_xml/DeleteFriend" id="delete" class="btn btn-danger"> Supprimer <i class="glyphicon glyphicon-trash"></i></a>
 </div>
 </body>

@@ -61,62 +61,59 @@
   </div><!-- /.container-fluid -->
 </nav>
 	<div class="container">
-		<div class="row">
-		<div class="col-md-6">
 		<h2>Ajout d'un ami</h2>
 		<h3>Rentrer ses informations</h3>
-		<form role="form" action="/projet_xml/NewFriend" method="post">
+		<form class="form-horizontal" action="/projet_xml/NewFriend" method="post">
 			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Prénom</span> <input type="text"
-						class="form-control" id="firstname" name="firstname"
-						placeholder="François" required>
+				<label class="col-md-1 control-label">Nom</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="lastname"
+						name="lastname" placeholder="François" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Nom</span> <input type="text"
-						class="form-control" id="lastname" name="lastname"
-						placeholder="Durand" required>
+				<label class="col-md-1 control-label">Prénom</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="firstname"
+						name="firstname" placeholder="Durand" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon"> Adresse @</span> <input
-						type="email" class="form-control" id="mail" name="mail"
-						placeholder="XXX@exemple.com" required>
+				<label class="col-md-1 control-label">Email</label>
+				<div class="col-md-4">
+					<input type="email" class="form-control" id="mail" 
+						name="mail"	placeholder="XXX@exemple.com" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Téléphone</span> <input type="text"
-						class="form-control" id="phone" name="phone"
-						placeholder="0610203040" required>
+				<label class="col-md-1 control-label">Téléphone</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="phone" 
+						name="phone" placeholder="0610203040" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Adresse</span> <input type="text"
-						class="form-control" id="address" name="address"
-						placeholder="15 rue des peupliers 33000 BORDEAUX" required>
+				<label class="col-md-1 control-label">Adresse</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="address" 
+						name="address" placeholder="35 rue des oliviers 33000 BORDEAUX" required>
 				</div>
 			</div>
 			<h3>Choisissez un(des) groupe(s)</h3>
 			<div class="form-group">
-				 <% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){
-					out.println("<div class=\"checkbox\">");
-					out.println("<label>");
-					out.println("<input type=\"checkbox\" id=\"" + groupTmp.getKey() + "\" name=\"" + groupTmp.getKey() + "\" > " + groupTmp.getKey() + "");
-					out.println("</label>");
-					out.println("</div>");
-				}
-				%>
+				<div class="col-md-2">
+					<% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){
+							out.println("<div class=\"checkbox\">");
+							out.println("<label>");
+							out.println("<input type=\"checkbox\" id=\"" + groupTmp.getKey() + "\" name=\"" + groupTmp.getKey() + "\" > " + groupTmp.getKey() + "");
+							out.println("</label>");
+							out.println("</div>");
+						}
+					%>
+				</div>
 			</div>
 			<button type="submit" class="btn btn-default">Ajouter</button>
 		</form>
-		</div>
-		
-		</div>
 	</div>
 </body>
 </html>

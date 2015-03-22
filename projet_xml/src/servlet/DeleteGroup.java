@@ -27,6 +27,7 @@ public class DeleteGroup extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Group groupTmp = (Group) session.getAttribute("currentGroup");
+		session.setAttribute("currentGroup", null);
 		user.deleteGroup(groupTmp.getName());
 		if(user.hasNoGroups())
 			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);

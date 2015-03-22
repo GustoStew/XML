@@ -28,6 +28,7 @@ public class DeleteFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Friend friendTmp = (Friend) session.getAttribute("currentFriend");
+		session.setAttribute("currentFriend", null);
 		user.deleteFriend(friendTmp.getMail());
 		if(user.hasNoFriends())
 			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
