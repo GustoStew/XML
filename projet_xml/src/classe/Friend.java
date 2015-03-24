@@ -67,6 +67,11 @@ public class Friend {
 		this.groups = groups;
 	}
 	
-	
+	/*public boolean infoMatchWithWord(String search){
+		for(String s : groups){
+			s.
+			if(search.equals(s));
+		}
+	}*/
 	
 }

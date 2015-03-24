@@ -55,7 +55,9 @@
         </div>
         <button type="submit" class="btn btn-default">Ok</button>
       </form>
-      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -63,7 +65,8 @@
          
       <div class="col-md-8"> 
       <h2><% out.println(currentGroup.getName());%></h2>                                                                               
-      <div class="table-responsive">          
+      <div class="table-responsive">   
+      <h3>Liste des membres</h3>       
       <table class="table">
         <thead>
           <tr>

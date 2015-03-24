@@ -28,11 +28,7 @@ public class NewGroup extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		user.addGroup(request.getParameter("name"));
-		XmlSerializer serial = new XmlSerializer("/Users/germainleguen/Dev/"+ user.getFirstName() + ".xml");
-		System.out.println(serial.getFile());
-		serial.save(user);
-		User userRecup = serial.getLastSave();
-		session.setAttribute("user", userRecup);
+		session.setAttribute("user", user);
 		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
 	}
 

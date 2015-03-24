@@ -9,38 +9,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import classe.ListUserID;
+import classe.User;
 import util.SerializerListID;
-import classe.*;
+import util.SerializerUser;
 
-@WebServlet("/NewUser")
-public class NewUser extends HttpServlet {
+
+@WebServlet("/LogIn")
+public class LogIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public NewUser() {
+    public LogIn() {
         super();
-        
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SerializerListID serialListID = new SerializerListID("/Users/germainleguen/Dev/UserID.xml");
 		ListUserID listID = serialListID.getLastSave();
-		User user = new User(request.getParameter("firstname"), 
-							 request.getParameter("lastname"), 
-							 request.getParameter("mail"), 
-							 request.getParameter("phone"), 
-							 request.getParameter("address"));
-		listID.addUser(user.getMail(), request.getParameter("pwd"));
-		serialListID.save(listID);
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		String idUser = request.getParameter("mail");
+		String pwd = request.getParameter("pwd");
+		System.out.println(idUser + pwd);
+		if(listID.hasUser(idUser) && listID.getUserPwd(idUser).equals(pwd)){
+			SerializerUser serialUser = new SerializerUser("/Users/germainleguen/Dev/" + idUser + ".xml");
+			User user = serialUser.getLastSave();
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		}
+		else{
+			this.getServletContext().getRequestDispatcher("/connection.html").forward(request, response);
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,30 +9,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import classe.Group;
 import classe.User;
+import util.SerializerUser;
 
 
-@WebServlet("/InfoGroup")
-public class InfoGroup extends HttpServlet {
+@WebServlet("/LogOut")
+public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public InfoGroup() {
+    public LogOut() {
         super();
+        
     }
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		String idGroup = request.getParameter("group");
-		Group g = user.getGroups().get(idGroup);
-		session.setAttribute("currentGroup", g);
-		this.getServletContext().getRequestDispatcher("/consultInfoGroup.jsp").forward(request, response);
+		SerializerUser serialUser = new SerializerUser("/Users/germainleguen/Dev/" + user.getMail() + ".xml");
+		session.removeAttribute("user");
+		serialUser.save(user);
+		this.getServletContext().getRequestDispatcher("/connection.html").forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

@@ -54,7 +54,9 @@
         </div>
         <button type="submit" class="btn btn-default">Ok</button>
       </form>
-      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

@@ -33,32 +33,34 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active" class="btn-group">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="badge-active"><% out.println(user.getFriendCount()); %></span> Amis </a>
-          <ul class="dropdown-menu" role="menu">
+        <li class="btn-group">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
+          <ul class="dropdown-menu" >
             <% if(user.getFriendCount()!=0)
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
         <li class="btn-group">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="badge-active"><% out.println(user.getGroupCount());%></span> Groupes </a>
-          <ul class="dropdown-menu" role="menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</a>
+          <ul class="dropdown-menu" >
           <% if(user.getGroupCount()!=0)
         	  out.println("<li><a href=\"/projet_xml/consultListGroup.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newGroupForm.jsp">Ajouter</a></li>           
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" action="/projet_xml/Search" method="post">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Recherche">
+          <input type="text" class="form-control" id="search" name="search" placeholder="Recherche">
         </div>
-        <button type="submit" class="btn btn-default">Ok</button>
+        <button type="submit" class="btn btn-primary">Ok</button>
       </form>
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 	<div class="container">
 		<h2>Ajout d'un ami</h2>
@@ -89,7 +91,7 @@
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="phone" 
-						name="phone" placeholder="0610203040" required>
+						name="phone" placeholder="0610203040" maxlength="10" required>
 				</div>
 			</div>
 			<div class="form-group">

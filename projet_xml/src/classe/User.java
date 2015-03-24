@@ -2,8 +2,6 @@ package classe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 public class User {
 	private String firstName, lastName, mail, phone, address;
@@ -13,6 +11,8 @@ public class User {
 	
 	public User() {
 		super();
+		friends = new HashMap<String, Friend>();
+		groups = new HashMap<String, Group>();
 	}
 
 	public User(String firstName, String lastName, String mail, String phone, String address) {
@@ -156,11 +156,8 @@ public class User {
 		this.friends = friends;
 	}
 
-	/*public void modifyFriend(String keyFriend, String firstName, String lastName, String mail, String phone, String address, String nameGroup){
-		for(Entry<String, Group> tmp : groups.entrySet()){
-			if(tmp.getValue().getMembers().containsKey(keyFriend))
-				tmp.getValue().getMembers().remove(keyFriend);
-		}
-		Friend newFriend = new Friend(firstName, lastName, mail, phone, address);
+	/*public ArrayList<Friend> searchMatch(String research){	
+		String[] searchTab = research.split(" ");
+		
 	}*/
 }

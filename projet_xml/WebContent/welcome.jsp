@@ -15,7 +15,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inner">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -48,33 +48,66 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Recherche">
         </div>
         <button type="submit" class="btn btn-default">Ok</button>
       </form>
-      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+      </ul>	
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
 	<h2>Bonjour <% out.println(user.getFirstName());%> !</h2>
 	<h3>Vos informations</h3>
-	<div class="col-md-1">
-		<h4><span class="label label-info">Prénom</span></h4>
-		<h4><span class="label label-info">Nom</span></h4>
-		<h4><span class="label label-info">Mail</span></h4> 
-		<h4><span class="label label-info">Téléphone</span></h4>
-		<h4><span class="label label-info">Adresse</span></h4>
-		<a href="#" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
+	<div class="row">
+		<div class="col-md-1">
+			<h4><span class="label label-info">Prénom</span></h4>
+		</div>
+		<div class="col-md-3">
+			<h4><% out.println(user.getFirstName());%></h4>
+		</div>
 	</div>
-	<div class="col-md-3">
-		<h4><% out.println(user.getFirstName());%></h4>
-		<h4><% out.println(user.getLastName());%></h4>
-		<h4><% out.println(user.getMail());%></h4>
-		<h4><% out.println(user.getPhone());%></h4>
-		<h4><% out.println(user.getAddress());%></h4>
+	<div class="row">
+		<div class="col-md-1">
+			<h4><span class="label label-info">Nom</span></h4>
+		</div>
+		<div class="col-md-3">
+			<h4><% out.println(user.getLastName());%></h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<h4><span class="label label-info">Email</span></h4>
+		</div>
+		<div class="col-md-3">
+			<h4><% out.println(user.getMail());%></h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<h4><span class="label label-info">Téléphone</span></h4>
+		</div>
+		<div class="col-md-3">
+			<h4><% out.println(user.getPhone());%></h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+			<h4><span class="label label-info">Adresse</span></h4>
+		</div>
+		<div class="col-md-3">
+			<h4><% out.println(user.getAddress());%></h4>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-1">
+			<a href="#" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
+		</div>
 	</div>
 </div>
 </body>

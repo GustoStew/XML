@@ -1,71 +1,57 @@
 package util;
 
 
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
-
-import classe.*;
-
-import java.awt.*;
-import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 
-public class XmlSerializer {
+public abstract class XmlSerializer {
 
-    private String file;
+    protected String pathFile;
 
-
-    public XmlSerializer(String file) {
-        this.file = file;
-        try{
-        File f = new File(file);
-        f.createNewFile();
-        }
-        catch(IOException e){
-        	System.out.println("impossible de créer le fichier");
-        }
+	public XmlSerializer(String pathFile) {
+        this.pathFile = pathFile;
     }
+	
+	public String getPathFile() {
+		return pathFile;
+	}
 
-    public void save(User u){
+	public void setPathFile(String pathFile) {
+		this.pathFile = pathFile;
+	}
+	
+    public boolean createFile(){
+    	try{
+    		File f = new File(this.pathFile);
+    		f.createNewFile();
+    		return true;
+    	}
+    	catch(IOException e){
+    		System.out.println("Impossible de créer le fichier");
+    		return false;
+    	}
+    }
+    
+    public void save(Object o){
         try {
-
-            FileOutputStream os = new FileOutputStream(this.file);
+            FileOutputStream os = new FileOutputStream(this.pathFile);
             XMLEncoder encoder = new XMLEncoder(os);
 
-            encoder.writeObject(u);
+            encoder.writeObject(o);
             encoder.close();
-
-        } catch(Exception e ){
-            e.printStackTrace();
+        } 
+        catch(Exception e ){
+            if(createFile())
+            	save(o);
+            else{
+            	System.out.println("Impossible de sauvegarder le fichier");
+            }
         }
     }
-
-
-    public User getLastSave(){
-        try {
-            FileInputStream fs = new FileInputStream(this.file);
-            XMLDecoder decoder = new XMLDecoder(fs);
-            return (User) decoder.readObject();
-
-        } catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
     
-    
-    
+    public abstract Object getLastSave();
+       
 }
