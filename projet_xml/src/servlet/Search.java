@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,10 +31,10 @@ public class Search extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		Friend f = new Friend("machin", "truc", "gg@gmail.com", "0625648964", "nul part");
-		ArrayList<Friend> tabFriend = new ArrayList<Friend>();
-		tabFriend.add(f);
-		session.setAttribute("tabFriend", tabFriend);
+		HashMap<String, Friend> tabFriend = user.searchMatch(request.getParameter("search"));
+		User userTmp = new User();
+		userTmp.setFriends(tabFriend);
+		session.setAttribute("userTmp", userTmp);
 		this.getServletContext().getRequestDispatcher("/resultSearch.jsp").forward(request, response);
 	}
 

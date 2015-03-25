@@ -2,6 +2,7 @@ package classe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class User {
 	private String firstName, lastName, mail, phone, address;
@@ -156,8 +157,18 @@ public class User {
 		this.friends = friends;
 	}
 
-	/*public ArrayList<Friend> searchMatch(String research){	
+	public HashMap<String, Friend> searchMatch(String research){	
 		String[] searchTab = research.split(" ");
-		
-	}*/
+		HashMap<String, Friend> tabFriend = new HashMap<String, Friend>();
+		for(Entry<String, Friend> friendTmp : friends.entrySet()){
+			for(String s : searchTab){
+				if(friendTmp.getValue().infoMatchWithWord(s)){
+					tabFriend.put(friendTmp.getKey(),friendTmp.getValue());
+					break;
+				}
+					
+			}
+		}
+		return tabFriend;
+	}
 }

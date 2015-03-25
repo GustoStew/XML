@@ -67,11 +67,21 @@ public class Friend {
 		this.groups = groups;
 	}
 	
-	/*public boolean infoMatchWithWord(String search){
+	public boolean infoMatchWithWord(String search){
 		for(String s : groups){
-			s.
-			if(search.equals(s));
+			System.out.println(s);
+			if(search.equalsIgnoreCase(s)){
+				System.out.println(s+search);
+				return true;
+			}
 		}
-	}*/
+		if(firstName.contains(search)
+    	|| lastName.contains(search)
+    	|| mail.contains(search)
+    	|| phone.contains(search)
+    	|| address.contains(search))
+			return true;
+		return false;
+	}
 	
 }
