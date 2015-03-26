@@ -29,11 +29,9 @@ public class DeleteFriend extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Friend friendTmp = (Friend) session.getAttribute("currentFriend");
 		session.setAttribute("currentFriend", null);
-		user.deleteFriend(friendTmp.getMail());
-		if(user.hasNoFriends())
-			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
-		else
-			this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
+		if(user.friendExist(friendTmp.getMail()))
+			user.deleteFriend(friendTmp.getMail());
+		this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
 	}
 
 	
@@ -41,11 +39,9 @@ public class DeleteFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String idFriend = request.getParameter("friend");
-		user.deleteFriend(idFriend);
-		if(user.hasNoFriends())
-			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
-		else
-			this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
+		if(user.friendExist(idFriend))
+			user.deleteFriend(idFriend);
+		this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
 	}
 
 }

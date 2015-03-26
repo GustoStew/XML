@@ -31,18 +31,20 @@ public class NewFriend extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		Friend newFriend = new Friend(request.getParameter("firstname"), 
+		if(!user.friendExist(request.getParameter("mail"))){
+				Friend newFriend = new Friend(request.getParameter("firstname"), 
 								request.getParameter("lastname"), 
 								request.getParameter("mail"), 
 								request.getParameter("phone"), 
 								request.getParameter("address"));
-		user.addFriend(newFriend);
-		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
-			if(request.getParameter(groupTmp.getKey())!=null)
-				groupTmp.getValue().addFriend(newFriend);
+				user.addFriend(newFriend);		
+				for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
+					if(request.getParameter(groupTmp.getKey())!=null)
+						groupTmp.getValue().addFriend(newFriend);
+				}
 		}
 		session.setAttribute("user", user);
-		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
 	}
 
 }

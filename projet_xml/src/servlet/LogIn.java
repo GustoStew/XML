@@ -32,7 +32,6 @@ public class LogIn extends HttpServlet {
 		ListUserID listID = serialListID.getLastSave();
 		String idUser = request.getParameter("mail");
 		String pwd = request.getParameter("pwd");
-		System.out.println(idUser + pwd);
 		if(listID.hasUser(idUser) && listID.getUserPwd(idUser).equals(pwd)){
 			SerializerUser serialUser = new SerializerUser("/Users/germainleguen/Dev/" + idUser + ".xml");
 			User user = serialUser.getLastSave();

@@ -19,18 +19,9 @@
 <body>
 <nav class="navbar navbar-inner">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="/projet_xml/welcome.jsp">Accueil <i class="glyphicon glyphicon-home"></i></a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="btn-group">
@@ -41,14 +32,7 @@
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
-        <li class="btn-group">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</a>
-          <ul class="dropdown-menu" >
-          <% if(user.getGroupCount()!=0)
-        	  out.println("<li><a href=\"/projet_xml/consultListGroup.jsp\">Consulter</a></li>");%>
-            <li><a href="/projet_xml/newGroupForm.jsp">Ajouter</a></li>           
-          </ul>
-        </li>
+        <li><a href="/projet_xml/consultListGroup.jsp"><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</a></li>
       </ul>
       <form class="navbar-form navbar-left" action="/projet_xml/Search" method="post">
         <div class="form-group">
@@ -57,6 +41,7 @@
         <button type="submit" class="btn btn-primary">Ok</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
+      	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
         <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
@@ -114,7 +99,7 @@
 					%>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-default">Ajouter</button>
+			<button type="submit" class="btn btn-primary">Ajouter</button>
 		</form>
 	</div>
 </body>

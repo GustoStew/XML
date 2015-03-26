@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import classe.Friend;
 import classe.Group;
 import classe.User;
 
@@ -28,22 +27,18 @@ public class DeleteGroup extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Group groupTmp = (Group) session.getAttribute("currentGroup");
 		session.setAttribute("currentGroup", null);
-		user.deleteGroup(groupTmp.getName());
-		if(user.hasNoGroups())
-			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
-		else
-			this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
+		if(user.groupExist(groupTmp.getName()))
+			user.deleteGroup(groupTmp.getName());
+		this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String idGroup = request.getParameter("group");
-		user.deleteGroup(idGroup);
-		if(user.hasNoGroups())
-			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
-		else
-			this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
+		if(user.groupExist(idGroup))
+			user.deleteGroup(idGroup);
+		this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
 	}
 
 }
