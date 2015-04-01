@@ -58,51 +58,51 @@
 				<label class="col-md-1 control-label">Nom</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="lastname"
-						name="lastname" placeholder="<% out.println(currentFriend.getLastName());%>" required>
+						name="lastname" placeholder="<%= currentFriend.getLastName()%>" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Prénom</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="firstname"
-						name="firstname" placeholder="<% out.println(currentFriend.getFirstName());%>" required>
+						name="firstname" placeholder="<%= currentFriend.getFirstName()%>" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Email</label>
 				<div class="col-md-4">
 					<input type="email" class="form-control" id="mail" name="mail"
-						placeholder="<% out.println(currentFriend.getMail());%>" required>
+						placeholder="<%= currentFriend.getMail()%>" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="phone" name="phone"
-						placeholder="<% out.println(currentFriend.getPhone());%>" required>
+						placeholder="<%= currentFriend.getPhone()%>" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Adresse</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="address" name="address"
-						placeholder="<% out.println(currentFriend.getAddress());%>" required>
+						placeholder="<%= currentFriend.getAddress()%>" required>
 				</div>
 			</div>
 			<h3>Modifier ses groupes</h3>
 			<div class="form-group">
 				<div class="col-md-2">
-					<% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){
-							out.println("<div class=\"checkbox\">");
-							out.println("<label>");
-							if(currentFriend.getGroups().contains(groupTmp.getKey()))
-								out.println("<input type=\"checkbox\" id=\"" + groupTmp.getKey() + "\" name=\"" + groupTmp.getKey() + "\" checked> " + groupTmp.getKey() + "");
-							else
-								out.println("<input type=\"checkbox\" id=\"" + groupTmp.getKey() + "\" name=\"" + groupTmp.getKey() + "\"> " + groupTmp.getKey() + "");
-							out.println("</label>");
-							out.println("</div>");
-						}
-					%>
+					<% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){%>
+							<div class="checkbox">
+							<label>
+							<% if(currentFriend.getGroups().contains(groupTmp.getKey())){%>
+								<input type="checkbox" id="<%= groupTmp.getKey()%>" name="<%= groupTmp.getKey()%>" checked><%= groupTmp.getKey()%>
+							<% }
+							   else {%>
+								<input type="checkbox" id="<%= groupTmp.getKey()%>" name="<%= groupTmp.getKey()%>"><%= groupTmp.getKey()%><% }%>
+							</label>
+							</div>
+						<% }%>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success">Valider les modifications</button>

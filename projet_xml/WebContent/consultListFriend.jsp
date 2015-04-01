@@ -25,8 +25,8 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
-            	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
+            <% if(user.getFriendCount()!=0){%>
+            	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
@@ -65,23 +65,23 @@
         </thead>
         <tbody>
         	 <% for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
-  							Friend f = friendTmp.getValue();
-  							out.println("<tr>");
- 							out.println("<td>"+f.getLastName()+"</td>");
-  							out.println("<td>"+f.getFirstName()+"</td>");
-  							out.println("<td>"+f.getMail()+"</td>");
-  							out.println("<td>");
-  							out.println("<form role=\"form\" action=\"/projet_xml/infoFriend\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-info btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
-  							out.println("</form>");
-  							out.println("</td>");
-  							out.println("<td>");
-  							out.println("<form role=\"form\" action=\"/projet_xml/DeleteFriend\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-danger btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
-  							out.println("</form>");
-  							out.println("</td>");
-  							out.println("</tr>");
-  					}%>
+  							Friend f = friendTmp.getValue();%>
+  							<tr>
+ 								<td><%= f.getLastName()%></td>
+  								<td><%= f.getFirstName()%></td>
+  								<td><%= f.getMail()%></td>
+  								<td>
+  									<form action="/projet_xml/infoFriend" method="post">
+  										<button type="submit" class="btn btn-info btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-info-sign"></i></button>
+  									</form>
+ 								</td>
+  								<td>
+  								<form action="/projet_xml/DeleteFriend" method="post">
+  									<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-trash"></i></button>
+  								</form>
+  								</td>
+  							</tr>
+  					<% }%>
         </tbody>
       </table>
       </div>

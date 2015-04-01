@@ -89,14 +89,13 @@
 			<h3>Choisissez un(des) groupe(s)</h3>
 			<div class="form-group">
 				<div class="col-md-2">
-					<% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){
-							out.println("<div class=\"checkbox\">");
-							out.println("<label>");
-							out.println("<input type=\"checkbox\" id=\"" + groupTmp.getKey() + "\" name=\"" + groupTmp.getKey() + "\" > " + groupTmp.getKey() + "");
-							out.println("</label>");
-							out.println("</div>");
-						}
-					%>
+					<% for(Entry<String,Group> groupTmp : user.getGroups().entrySet()){%>
+							<div class="checkbox">
+							<label>
+							<input type="checkbox" id="<%= groupTmp.getKey()%>" name="<%= groupTmp.getKey()%>" ><%= groupTmp.getKey()%>
+							</label>
+							</div>
+						<% }%>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Ajouter</button>

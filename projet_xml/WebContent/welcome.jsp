@@ -25,8 +25,8 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
-            	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
+            <% if(user.getFriendCount()!=0){%>
+            	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
@@ -47,7 +47,7 @@
 </nav>
 <div class="container">
 	<h2>Bonjour <%= user.getFirstName()%> !</h2>
-	<h3>Vos informations</h3>
+	<h3>Vos informations <a href="/projet_xml/ModifyUser" id="modify" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a></h3>
 	<div class="row">
 		<div class="col-md-1">
 			<h4><span class="label label-info">Prénom</span></h4>
@@ -88,12 +88,7 @@
 			<h4><%= user.getAddress()%></h4>
 		</div>
 	</div>
-	<br>
-	<div class="row">
-		<div class="col-md-1">
-			<a href="/projet_xml/ModifyUser" id="modify" class="btn btn-primary"> Modifier <i class="glyphicon glyphicon-pencil"></i></a>
-		</div>
-	</div>
+	
 </div>
 </body>
 </html>
