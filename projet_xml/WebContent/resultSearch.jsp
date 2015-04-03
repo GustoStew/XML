@@ -4,6 +4,7 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
+	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -26,7 +27,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
+            <% if(!ServiceUser.hasNoFriends(user))
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
@@ -48,7 +49,11 @@
 </nav>
 <div class="container"> 
       <div class="col-md-8">
-      <h2>Résultat de votre recherche</h2>                                                                                  
+      <h2>Résultat de votre recherche</h2>  
+      <% if(ServiceUser.hasNoFriends(userTmp)){%>
+      	<div class="alert alert-info col-md-3"><b>Pas de résultats</b></div>
+      	<% }
+      	else {%>                                                                          
       <div class="table-responsive">          
       <table class="table">
         <thead>
@@ -68,12 +73,12 @@
  							<td><%= f.getFirstName()%></td>
  							<td><%= f.getMail()%></td>
  							<td>
- 								<form role="form" action="/projet_xml/infoFriend" method="post">
+ 								<form action="/projet_xml/infoFriend" method="post">
  									<button type="submit" class="btn btn-info btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-info-sign"></i></button>
  								</form>
  							</td>
  							<td>
- 								<form role="form" action="/projet_xml/DeleteFriend" method="post">
+ 								<form action="/projet_xml/DeleteFriend" method="post">
  									<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-trash"></i></button>
  								</form>
  							</td>
@@ -82,6 +87,7 @@
         </tbody>
       </table>
       </div>
+      <% }%>
     </div>
     </div>
 </body>

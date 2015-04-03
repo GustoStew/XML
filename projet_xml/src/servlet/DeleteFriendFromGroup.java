@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceUser;
 import classe.Group;
 import classe.User;
 
@@ -30,8 +31,8 @@ public class DeleteFriendFromGroup extends HttpServlet {
 		Group currentGroup = (Group) session.getAttribute("currentGroup");
 		User user = (User) session.getAttribute("user");
 		String idFriend = request.getParameter("friend");
-		if(user.groupExist(currentGroup.getName()) && user.friendExist(idFriend))
-			user.deleteFriendFromGroup(idFriend, currentGroup.getName());
+		if(ServiceUser.groupExist(user, currentGroup.getName()) && ServiceUser.friendExist(user, idFriend))
+			ServiceUser.deleteFriendFromGroup(user, idFriend, currentGroup.getName());
 		this.getServletContext().getRequestDispatcher("/consultInfoGroup.jsp").forward(request, response);
 	}
 

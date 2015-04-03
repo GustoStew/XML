@@ -4,6 +4,7 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
+	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -25,7 +26,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
+            <% if(!ServiceUser.hasNoFriends(user))
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
@@ -48,7 +49,7 @@
 <div class="container">
 	<div class="col-md-6">
       <h2>Vos groupes</h2>
-      <% if(user.hasNoGroups()){%>
+      <% if(ServiceUser.hasNoGroups(user)){%>
       	<div class="alert alert-info">Vous n'avez pas encore de groupe.</div>
       	<% }
       	else {%>

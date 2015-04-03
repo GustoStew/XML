@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceUser;
 import classe.Group;
 import classe.User;
 
@@ -27,8 +28,8 @@ public class DeleteGroup extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Group groupTmp = (Group) session.getAttribute("currentGroup");
 		session.setAttribute("currentGroup", null);
-		if(user.groupExist(groupTmp.getName()))
-			user.deleteGroup(groupTmp.getName());
+		if(ServiceUser.groupExist(user, groupTmp.getName()))
+			ServiceUser.deleteGroup(user, groupTmp.getName());
 		this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
 	}
 
@@ -36,8 +37,8 @@ public class DeleteGroup extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String idGroup = request.getParameter("group");
-		if(user.groupExist(idGroup))
-			user.deleteGroup(idGroup);
+		if(ServiceUser.groupExist(user, idGroup))
+			ServiceUser.deleteGroup(user, idGroup);
 		this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
 	}
 

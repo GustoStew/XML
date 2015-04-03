@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceUser;
 import classe.Friend;
 import classe.Group;
 import classe.User;
@@ -31,13 +32,13 @@ public class ModifyFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Friend currentFriend = (Friend) session.getAttribute("currentFriend");
-		user.deleteFriend(currentFriend.getMail());
+		ServiceUser.deleteFriend(user, currentFriend.getMail());
 		Friend newFriend = new Friend(request.getParameter("firstname"), 
 				request.getParameter("lastname"), 
 				request.getParameter("mail"), 
 				request.getParameter("phone"), 
 				request.getParameter("address"));
-		user.addFriend(newFriend);
+		ServiceUser.addFriend(user, newFriend);
 		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
 			if(request.getParameter(groupTmp.getKey())!=null)
 				groupTmp.getValue().addFriend(newFriend);

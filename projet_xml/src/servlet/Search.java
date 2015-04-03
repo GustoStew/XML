@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceUser;
 import classe.Friend;
 import classe.User;
 
@@ -30,7 +31,7 @@ public class Search extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		HashMap<String, Friend> tabFriend = user.searchMatch(request.getParameter("search"));
+		HashMap<String, Friend> tabFriend = ServiceUser.searchMatch(user, request.getParameter("search"));
 		User userTmp = new User();
 		userTmp.setFriends(tabFriend);
 		session.setAttribute("userTmp", userTmp);

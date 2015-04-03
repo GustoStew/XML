@@ -1,8 +1,6 @@
 package classe;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class User {
 	private String firstName, lastName, mail, phone, address;
@@ -25,11 +23,8 @@ public class User {
 		this.address = address;
 		friends = new HashMap<String, Friend>();
 		groups = new HashMap<String, Group>();
-		addGroup("Travail");
-		addGroup("Famille");
-		addGroup("Amis");
 		friendCount = 0;
-		groupCount = 3;
+		groupCount = 0;
 	}
 
 	public String getFirstName() {
@@ -88,58 +83,6 @@ public class User {
 		this.groupCount = groupCount;
 	}
 
-	public void addGroup(String name){
-		Group tmp = new Group(name);
-		groups.put(name, tmp);
-		groupCount = groups.size();
-	}
-	
-	public boolean friendExist(String idFriend){
-		return getFriends().containsKey(idFriend);
-	}
-	
-	public boolean groupExist(String idGroup){
-		return getGroups().containsKey(idGroup);
-	}
-	
-	public boolean hasNoFriends(){
-		return friendCount==0;
-	}
-	
-	public boolean hasNoGroups(){
-		return groupCount==0;
-	}
-	
-	public void addFriend(Friend f){
-		friends.put(f.getMail(), f);
-		friendCount++;
-	}
-	
-	public void deleteFriend(String idFriend){
-		Friend friendTmp = getFriends().get(idFriend);
-		ArrayList<String> listGroupTmp = new ArrayList<String>(friendTmp.getGroups());
-		for(String idGroup : listGroupTmp){
-			deleteFriendFromGroup(idFriend, idGroup);
-		}
-		friends.remove(idFriend);
-		friendCount--;
-	}
-	
-	public void deleteFriendFromGroup(String idFriend, String idGroup){
-		Friend f = getFriends().get(idFriend);
-		Group g = getGroups().get(idGroup);
-		g.deleteFriend(f);
-	}
-	
-	public void deleteGroup(String idGroup){
-		Group groupTmp = getGroups().get(idGroup);
-		ArrayList<String> listFriendTmp = new ArrayList<String>(groupTmp.getMembers());
-		for(String idFriend : listFriendTmp){
-			deleteFriendFromGroup(idFriend, idGroup);
-		}
-		groups.remove(idGroup);
-		groupCount--;
-	}
 	
 	public HashMap<String, Group> getGroups() {
 		return groups;
@@ -157,18 +100,5 @@ public class User {
 		this.friends = friends;
 	}
 
-	public HashMap<String, Friend> searchMatch(String research){	
-		String[] searchTab = research.split(" ");
-		HashMap<String, Friend> tabFriend = new HashMap<String, Friend>();
-		for(Entry<String, Friend> friendTmp : friends.entrySet()){
-			for(String s : searchTab){
-				if(friendTmp.getValue().infoMatchWithWord(s)){
-					tabFriend.put(friendTmp.getKey(),friendTmp.getValue());
-					break;
-				}
-					
-			}
-		}
-		return tabFriend;
-	}
+	
 }

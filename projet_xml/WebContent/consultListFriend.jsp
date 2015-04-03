@@ -4,6 +4,7 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
+	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -25,7 +26,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0){%>
+            <% if(!ServiceUser.hasNoFriends(user)){%>
             	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
@@ -48,7 +49,7 @@
 <div class="container"> 
       <div class="col-md-8">
       <h2>Liste de vos amis</h2> 
-       <% if(user.hasNoFriends()){%>
+       <% if(ServiceUser.hasNoFriends(user)){%>
       	<div class="alert alert-info">Vous n'avez pas encore de contact. <a href="/projet_xml/newFriendForm.jsp" class="alert-link">Ajoutez-en !</a></div>
       	<% }
       	else {%>                                                                                 

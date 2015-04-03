@@ -4,11 +4,12 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
+	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
 	<jsp:useBean id="currentFriend" scope="session" class="classe.Friend"></jsp:useBean>
-  <title><% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%></title>
+  <title><%= currentFriend.getLastName()%> <%= currentFriend.getFirstName()%></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -26,7 +27,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0){%>
+            <% if(!ServiceUser.hasNoFriends(user)){%>
             	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
@@ -47,7 +48,7 @@
   </div>
 </nav>
 <div class="container">
-	<h2><% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%></h2>
+	<h2><%= currentFriend.getLastName()%> <%= currentFriend.getFirstName()%></h2>
 	<a href="/projet_xml/modifyFriendForm.jsp" id="modify" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
 	<a href="/projet_xml/DeleteFriend" id="delete" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
 	<h3>Ses informations</h3>

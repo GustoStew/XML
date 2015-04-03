@@ -4,12 +4,13 @@
 <html lang="fr">
 <head>
 <%@ page import="classe.*"%>
+<%@ page import="services.*" %>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map.Entry"%>
 <jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
 <jsp:useBean id="currentFriend" scope="session" class="classe.Friend"></jsp:useBean>
 <title>
-	Modification <% out.println(currentFriend.getLastName()+" "+currentFriend.getFirstName());%>
+	Modification <%= currentFriend.getLastName()%> <%= currentFriend.getFirstName()%>
 </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +32,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
+            <% if(!ServiceUser.hasNoFriends(user))
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>

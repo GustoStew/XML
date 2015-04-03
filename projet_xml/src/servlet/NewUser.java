@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceUser;
 import util.SerializerListID;
 import classe.*;
 
@@ -36,6 +37,9 @@ public class NewUser extends HttpServlet {
 							 request.getParameter("mail"), 
 							 request.getParameter("phone"), 
 							 request.getParameter("address"));
+		ServiceUser.addGroup(user, "Amis");
+		ServiceUser.addGroup(user, "Famille");
+		ServiceUser.addGroup(user, "Travail");
 		listID.addUser(user.getMail(), request.getParameter("pwd"));
 		serialListID.save(listID);
 		HttpSession session = request.getSession();

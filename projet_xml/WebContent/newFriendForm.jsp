@@ -4,6 +4,7 @@
 <html lang="fr">
 <head>
 <%@ page import="classe.*"%>
+<%@ page import="services.*" %>
 <%@ page import="java.util.Map.Entry"%>
 <jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
 <title>Nouvel Ami</title>
@@ -15,6 +16,20 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+
+function validateFriend(){
+  	if(!ServiceUser.friendExist(user, document.getElementById('mail').value)){
+    return true;
+  }
+  else {
+    alert("Saisissez le prénom");
+    return false;
+  }
+}
+
+</script>
 </head>
 <body>
 <nav class="navbar navbar-inner">
@@ -27,7 +42,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
+            <% if(!ServiceUser.hasNoFriends(user))
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
@@ -50,7 +65,7 @@
 	<div class="container">
 		<h2>Ajout d'un ami</h2>
 		<h3>Rentrer ses informations</h3>
-		<form class="form-horizontal" action="/projet_xml/NewFriend" method="post">
+		<form name="newFriend" class="form-horizontal" action="/projet_xml/NewFriend" method="post" onsubmit="return validateFriend()">
 			<div class="form-group">
 				<label class="col-md-1 control-label">Nom</label>
 				<div class="col-md-4">

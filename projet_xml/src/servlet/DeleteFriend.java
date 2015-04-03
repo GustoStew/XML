@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceUser;
 import classe.Friend;
 import classe.User;
 
@@ -29,8 +30,8 @@ public class DeleteFriend extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Friend friendTmp = (Friend) session.getAttribute("currentFriend");
 		session.setAttribute("currentFriend", null);
-		if(user.friendExist(friendTmp.getMail()))
-			user.deleteFriend(friendTmp.getMail());
+		if(ServiceUser.friendExist(user, friendTmp.getMail()))
+			ServiceUser.deleteFriend(user, friendTmp.getMail());
 		this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
 	}
 
@@ -39,8 +40,8 @@ public class DeleteFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String idFriend = request.getParameter("friend");
-		if(user.friendExist(idFriend))
-			user.deleteFriend(idFriend);
+		if(ServiceUser.friendExist(user, idFriend))
+			ServiceUser.deleteFriend(user, idFriend);
 		this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
 	}
 
