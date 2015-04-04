@@ -43,9 +43,10 @@ public class NewFriend extends HttpServlet {
 					if(request.getParameter(groupTmp.getKey())!=null)
 						groupTmp.getValue().addFriend(newFriend);
 				}
+				session.setAttribute("user", user);
+				this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
 		}
-		session.setAttribute("user", user);
-		this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/newFriendForm.jsp").forward(request, response);
 	}
 
 }

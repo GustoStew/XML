@@ -16,20 +16,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-
-function validateFriend(){
-  	if(!ServiceUser.friendExist(user, document.getElementById('mail').value)){
-    return true;
-  }
-  else {
-    alert("Saisissez le prénom");
-    return false;
-  }
-}
-
-</script>
+	<script type="text/javascript">
+  $(document).ready(function() {
+	    $('#newFriendForm').submit(function() {
+	        $.ajax({
+	        	type : $('#newFriendForm').attr('method'),
+	            url : '/projet_xml/NewFriendAjax',
+	            data : {
+	            mail : $('#mail').val()
+	            },
+	            success : function(data) {
+	            	if(data=="false"){
+	            		alert('Vous avez déjà un ami qui possède ce mail !');
+	            	}
+	            }
+	        });
+	    });
+  });
+  </script>
 </head>
 <body>
 <nav class="navbar navbar-inner">
@@ -40,7 +44,7 @@ function validateFriend(){
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="btn-group">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><span class="badge-active"><%= user.getFriendCount()%></span> Amis</b></a>
           <ul class="dropdown-menu" >
             <% if(!ServiceUser.hasNoFriends(user))
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
@@ -57,7 +61,7 @@ function validateFriend(){
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
@@ -65,7 +69,7 @@ function validateFriend(){
 	<div class="container">
 		<h2>Ajout d'un ami</h2>
 		<h3>Rentrer ses informations</h3>
-		<form name="newFriend" class="form-horizontal" action="/projet_xml/NewFriend" method="post" onsubmit="return validateFriend()">
+		<form id="newFriendForm" class="form-horizontal" action="/projet_xml/NewFriend" method="post">
 			<div class="form-group">
 				<label class="col-md-1 control-label">Nom</label>
 				<div class="col-md-4">
@@ -101,6 +105,7 @@ function validateFriend(){
 						name="address" placeholder="35 rue des oliviers 33000 BORDEAUX" required>
 				</div>
 			</div>
+	<% if(user.getGroupCount()!=0){%>
 			<h3>Choisissez un(des) groupe(s)</h3>
 			<div class="form-group">
 				<div class="col-md-2">
@@ -113,7 +118,8 @@ function validateFriend(){
 						<% }%>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Ajouter</button>
+	<% }%>
+			<button type="submit" class="btn btn-success">Ajouter</button>
 		</form>
 	</div>
 </body>

@@ -32,20 +32,23 @@ public class ModifyFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Friend currentFriend = (Friend) session.getAttribute("currentFriend");
-		ServiceUser.deleteFriend(user, currentFriend.getMail());
-		Friend newFriend = new Friend(request.getParameter("firstname"), 
-				request.getParameter("lastname"), 
-				request.getParameter("mail"), 
-				request.getParameter("phone"), 
-				request.getParameter("address"));
-		ServiceUser.addFriend(user, newFriend);
-		for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
-			if(request.getParameter(groupTmp.getKey())!=null)
-				groupTmp.getValue().addFriend(newFriend);
+		String modifiedMail = request.getParameter("mail");
+		if(!ServiceUser.friendExist(user, modifiedMail) || currentFriend.getMail().equals(modifiedMail)){
+			ServiceUser.deleteFriend(user, currentFriend.getMail());
+			Friend newFriend = new Friend(request.getParameter("firstname"), 
+					request.getParameter("lastname"), 
+						request.getParameter("mail"), 
+						request.getParameter("phone"), 
+						request.getParameter("address"));
+			ServiceUser.addFriend(user, newFriend);
+			for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
+				if(request.getParameter(groupTmp.getKey())!=null)
+					groupTmp.getValue().addFriend(newFriend);
+			}
+			session.setAttribute("user", user);
+			session.setAttribute("currentFriend", newFriend);
+			this.getServletContext().getRequestDispatcher("/consultInfoFriend.jsp").forward(request, response);
 		}
-		session.setAttribute("user", user);
-		session.setAttribute("currentFriend", newFriend);
-		this.getServletContext().getRequestDispatcher("/consultInfoFriend.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/modifyFriendForm.jsp").forward(request, response);
 	}
-
 }

@@ -20,6 +20,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+  $(document).ready(function() {
+	    $('#modifyFriendForm').submit(function() {
+	        $.ajax({
+	        	type : $('#modifyFriendForm').attr('method'),
+	            url : '/projet_xml/ModifyFriendAjax',
+	            data : {
+	            mail : $('#mail').val()
+	            },
+	            success : function(data) {
+	            	if(data=="false"){
+	            		alert('Vous avez déjà un ami qui possède ce mail !');
+	            	}
+	            }
+	        });
+	    });
+  });
+  </script>
 </head>
 <body>
 <nav class="navbar navbar-inner">
@@ -30,7 +48,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="btn-group">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><span class="badge-active"><%= user.getFriendCount()%></span> Amis</b></a>
           <ul class="dropdown-menu" >
             <% if(!ServiceUser.hasNoFriends(user))
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
@@ -47,14 +65,14 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
 </nav>
 	<div class="container">
 		<h3>Modifier ses informations</h3>
-		<form class="form-horizontal" action="/projet_xml/ModifyFriend" method="post">
+		<form id="modifyFriendForm" class="form-horizontal" action="/projet_xml/ModifyFriend" method="post">
 			<div class="form-group">
 				<label class="col-md-1 control-label">Nom</label>
 				<div class="col-md-4">

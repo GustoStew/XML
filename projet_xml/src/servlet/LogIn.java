@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,20 +29,20 @@ public class LogIn extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SerializerListID serialListID = new SerializerListID("/Users/germainleguen/Dev/UserID.xml");
+		ServletContext context = getServletContext();
+		SerializerListID serialListID = new SerializerListID(context.getInitParameter("databasePath") + "UserID.xml");
 		ListUserID listID = serialListID.getLastSave();
 		String idUser = request.getParameter("mail");
 		String pwd = request.getParameter("pwd");
 		if(listID.hasUser(idUser) && listID.getUserPwd(idUser).equals(pwd)){
-			SerializerUser serialUser = new SerializerUser("/Users/germainleguen/Dev/" + idUser + ".xml");
+			SerializerUser serialUser = new SerializerUser(context.getInitParameter("databasePath") + idUser + ".xml");
 			User user = serialUser.getLastSave();
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
 		else{
-			this.getServletContext().getRequestDispatcher("/connection.html").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/connection.jsp").forward(request, response);
 		}
 	}
-
 }

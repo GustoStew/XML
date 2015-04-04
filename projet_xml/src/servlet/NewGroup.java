@@ -27,10 +27,10 @@ public class NewGroup extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		if(!ServiceUser.groupExist(user, request.getParameter("name")))
+		if(!ServiceUser.groupExist(user, request.getParameter("name"))){
 			ServiceUser.addGroup(user, request.getParameter("name"));
-		session.setAttribute("user", user);
+			session.setAttribute("user", user);
+		}
 		this.getServletContext().getRequestDispatcher("/consultListGroup.jsp").forward(request, response);
 	}
-
 }

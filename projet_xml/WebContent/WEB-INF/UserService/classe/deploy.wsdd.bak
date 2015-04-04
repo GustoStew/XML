@@ -1,0 +1,71 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UserService WSDL service -->
+
+  <service name="User" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://classe"/>
+      <parameter name="wsdlServiceElement" value="UserService"/>
+      <parameter name="schemaQualified" value="http://classe,http://xml.apache.org/xml-soap"/>
+      <parameter name="wsdlServicePort" value="User"/>
+      <parameter name="className" value="classe.UserSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="User"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getAddress" qname="operNS:getAddress" xmlns:operNS="http://classe" returnQName="retNS:getAddressReturn" xmlns:retNS="http://classe" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setAddress" qname="operNS:setAddress" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:address" xmlns:pns="http://classe" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getGroups" qname="operNS:getGroups" xmlns:operNS="http://classe" returnQName="retNS:getGroupsReturn" xmlns:retNS="http://classe" returnType="rtns:Map" xmlns:rtns="http://xml.apache.org/xml-soap" soapAction="" >
+      </operation>
+      <operation name="getLastName" qname="operNS:getLastName" xmlns:operNS="http://classe" returnQName="retNS:getLastNameReturn" xmlns:retNS="http://classe" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setGroups" qname="operNS:setGroups" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:groups" xmlns:pns="http://classe" type="tns:Map" xmlns:tns="http://xml.apache.org/xml-soap"/>
+      </operation>
+      <operation name="setMail" qname="operNS:setMail" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:mail" xmlns:pns="http://classe" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getMail" qname="operNS:getMail" xmlns:operNS="http://classe" returnQName="retNS:getMailReturn" xmlns:retNS="http://classe" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setPhone" qname="operNS:setPhone" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:phone" xmlns:pns="http://classe" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getFriends" qname="operNS:getFriends" xmlns:operNS="http://classe" returnQName="retNS:getFriendsReturn" xmlns:retNS="http://classe" returnType="rtns:Map" xmlns:rtns="http://xml.apache.org/xml-soap" soapAction="" >
+      </operation>
+      <operation name="getPhone" qname="operNS:getPhone" xmlns:operNS="http://classe" returnQName="retNS:getPhoneReturn" xmlns:retNS="http://classe" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getFirstName" qname="operNS:getFirstName" xmlns:operNS="http://classe" returnQName="retNS:getFirstNameReturn" xmlns:retNS="http://classe" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setFirstName" qname="operNS:setFirstName" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:firstName" xmlns:pns="http://classe" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setLastName" qname="operNS:setLastName" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:lastName" xmlns:pns="http://classe" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getFriendCount" qname="operNS:getFriendCount" xmlns:operNS="http://classe" returnQName="retNS:getFriendCountReturn" xmlns:retNS="http://classe" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setFriendCount" qname="operNS:setFriendCount" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:friendCount" xmlns:pns="http://classe" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getGroupCount" qname="operNS:getGroupCount" xmlns:operNS="http://classe" returnQName="retNS:getGroupCountReturn" xmlns:retNS="http://classe" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setGroupCount" qname="operNS:setGroupCount" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:groupCount" xmlns:pns="http://classe" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setFriends" qname="operNS:setFriends" xmlns:operNS="http://classe" soapAction="" >
+        <parameter qname="pns:friends" xmlns:pns="http://classe" type="tns:Map" xmlns:tns="http://xml.apache.org/xml-soap"/>
+      </operation>
+      <parameter name="allowedMethods" value="getPhone setFriendCount getGroupCount setAddress setPhone setFriends getLastName getMail setLastName getFriendCount setMail setFirstName getFriends getAddress setGroupCount setGroups getFirstName getGroups"/>
+
+  </service>
+</deployment>

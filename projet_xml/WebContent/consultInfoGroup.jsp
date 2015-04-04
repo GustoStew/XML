@@ -32,7 +32,7 @@
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
-        <li><a href="/projet_xml/consultListGroup.jsp"><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</a></li>
+        <li><a href="/projet_xml/consultListGroup.jsp"><b><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</b></a></li>
       </ul>
       <form class="navbar-form navbar-left" action="/projet_xml/Search" method="post">
         <div class="form-group">
@@ -42,7 +42,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>

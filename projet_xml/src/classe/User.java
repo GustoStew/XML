@@ -2,6 +2,11 @@ package classe;
 
 import java.util.HashMap;
 
+import javax.jws.WebService;
+
+
+
+@WebService
 public class User {
 	private String firstName, lastName, mail, phone, address;
 	private HashMap<String, Group> groups;

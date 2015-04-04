@@ -14,6 +14,25 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+	    $('#newGroupForm').submit(function() {
+	        $.ajax({
+	        	type : $('#newGroupForm').attr('method'),
+	            url : '/projet_xml/NewGroupAjax',
+	            data : {
+	            nameGroup : $('#nameGroup').val()
+	            },
+	            success : function(data) {
+	            	if(data=="false"){
+	            		alert('Vous possédez déjà un groupe nommé ainsi !');
+	            	}
+	            }
+	        });
+	    });
+  });
+  </script>
 </head>
 <body>
 <nav class="navbar navbar-inner">
@@ -31,7 +50,7 @@
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
-        <li><a href="/projet_xml/consultListGroup.jsp"><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</a></li>
+        <li><a href="/projet_xml/consultListGroup.jsp"><b><span class="badge-active"><%= user.getGroupCount()%></span> Groupes</b></a></li>
       </ul>
       <form class="navbar-form navbar-left" action="/projet_xml/Search" method="post">
         <div class="form-group">
@@ -41,7 +60,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/LogOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
@@ -81,7 +100,6 @@
   									</form>
 								</td>
 							</tr>
-  						
   				<% }%>
         </tbody>
       </table>
@@ -92,15 +110,16 @@
     <div class="container">
 		<div class="col-md-6">
 			<h3>Ajouter un groupe</h3>
-			<form class="form-horizontal" action="/projet_xml/NewGroup" method="post">
+			<form class="form-horizontal" action="/projet_xml/NewGroup" method="post" id="newGroupForm">
 				<div class="form-group">
 					<label class="col-md-1 control-label">Nom</label>
 					<div class="col-md-4">
-						<input type="text" class="form-control" id="name"
+						<input type="text" class="form-control" id="nameGroup"
 							name="name" placeholder="Amis" required>
+						<div class="alert alert-danger" id="alert" hidden>Existe déjà !</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-default">Ajouter</button>
+			<button type="submit" class="btn btn-success">Ajouter</button>
 		</form>
 		</div>
 	</div>
