@@ -36,8 +36,5 @@ public class ModifyFriendAjax extends HttpServlet {
 		if(ServiceUser.friendExist(user, newMail) && !currentFriend.getMail().equals(newMail)){
 			response.getWriter().write("false");
 		}
-		else{
-			response.getWriter().write("true");
-		}
 	}
 }

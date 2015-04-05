@@ -50,8 +50,8 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><span class="badge-active"><%= user.getFriendCount()%></span> Amis</b></a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
-            	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
+            <% if(user.getFriendCount()!=0){%>
+            	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
@@ -65,7 +65,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/SignOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
@@ -77,37 +77,38 @@
 				<label class="col-md-1 control-label">Nom</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="lastname"
-						name="lastname" placeholder="<%= currentFriend.getLastName()%>" required>
+						name="lastname" placeholder="<%= currentFriend.getLastName()%>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Prénom</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="firstname"
-						name="firstname" placeholder="<%= currentFriend.getFirstName()%>" required>
+						name="firstname" placeholder="<%= currentFriend.getFirstName()%>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Email</label>
 				<div class="col-md-4">
 					<input type="email" class="form-control" id="mail" name="mail"
-						placeholder="<%= currentFriend.getMail()%>" required>
+						placeholder="<%= currentFriend.getMail()%>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="phone" name="phone"
-						placeholder="<%= currentFriend.getPhone()%>" required>
+					<input type="number" class="form-control" id="phone" name="phone"
+						placeholder="<%= currentFriend.getPhone()%>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-1 control-label">Adresse</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="address" name="address"
-						placeholder="<%= currentFriend.getAddress()%>" required>
+						placeholder="<%= currentFriend.getAddress()%>">
 				</div>
 			</div>
+			<% if(user.getGroupCount()!=0){%>
 			<h3>Modifier ses groupes</h3>
 			<div class="form-group">
 				<div class="col-md-2">
@@ -124,6 +125,7 @@
 						<% }%>
 				</div>
 			</div>
+			<% }%>
 			<button type="submit" class="btn btn-success">Valider les modifications</button>
 		</form>
 	</div>

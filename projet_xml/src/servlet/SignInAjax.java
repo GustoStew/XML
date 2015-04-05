@@ -2,22 +2,21 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import services.ServiceUser;
-import classe.User;
+import util.SerializerListID;
+import classe.ListUserID;
 
-
-@WebServlet("/NewFriendAjax")
-public class NewFriendAjax extends HttpServlet {
+@WebServlet("/SignInAjax")
+public class SignInAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NewFriendAjax() {
+
+    public SignInAjax() {
         super();
     }
 
@@ -26,10 +25,13 @@ public class NewFriendAjax extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
+		ServletContext context = getServletContext();
+		SerializerListID serialListID = new SerializerListID(context.getInitParameter("databasePath") + "UserID.xml");
+		ListUserID listID = serialListID.getLastSave();
+		String idUser = request.getParameter("mail");
+		String pwd = request.getParameter("pwd");
 		response.setContentType("text/plain");
-		if(ServiceUser.friendExist(user, request.getParameter("mail"))){
+		if(!listID.getData().containsKey(idUser) || !listID.getData().get(idUser).equals(pwd)){
 			response.getWriter().write("false");
 		}
 	}

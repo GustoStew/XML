@@ -10,50 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import services.ServiceUser;
+import classe.ListUserID;
+import classe.User;
 import util.SerializerListID;
 import util.SerializerUser;
-import classe.*;
 
-@WebServlet("/NewUser")
-public class NewUser extends HttpServlet {
+
+@WebServlet("/SignIn")
+public class SignIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public NewUser() {
+    public SignIn() {
         super();
-        
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
 		SerializerListID serialListID = new SerializerListID(context.getInitParameter("databasePath") + "UserID.xml");
 		ListUserID listID = serialListID.getLastSave();
-		if(!listID.getData().containsKey(request.getParameter("mail"))){
-			User user = new User(request.getParameter("firstname"), 
-					             request.getParameter("lastname"), 
-					             request.getParameter("mail"), 
-					             request.getParameter("phone"), 
-					             request.getParameter("address"));
-			ServiceUser.addGroup(user, "Amis");
-			ServiceUser.addGroup(user, "Famille");
-			ServiceUser.addGroup(user, "Travail");
-			listID.addUser(user.getMail(), request.getParameter("pwd"));
-			serialListID.save(listID);
-			SerializerUser serialUser = new SerializerUser(context.getInitParameter("databasePath") + user.getMail() + ".xml");
-			serialUser.save(user);
+		String idUser = request.getParameter("mail");
+		String pwd = request.getParameter("pwd");
+		if(listID.getData().containsKey(idUser) && listID.getData().get(idUser).equals(pwd)){
+			SerializerUser serialUser = new SerializerUser(context.getInitParameter("databasePath") + idUser + ".xml");
+			User user = serialUser.getLastSave();
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
 		}
-		else
+		else{
 			this.getServletContext().getRequestDispatcher("/connection.jsp").forward(request, response);
+		}
 	}
-
 }

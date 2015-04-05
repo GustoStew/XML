@@ -20,7 +20,7 @@
 	        	type : $('#newFriendForm').attr('method'),
 	            url : '/projet_xml/NewFriendAjax',
 	            data : {
-	            mail : $('#mail').val()
+	            	mail : $('#mail').val()
 	            },
 	            success : function(data) {
 	            	if(data=="false"){
@@ -58,7 +58,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/SignOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
@@ -91,7 +91,7 @@
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="phone" 
+					<input type="number" class="form-control" id="phone" 
 						name="phone" placeholder="0610203040" maxlength="10" required>
 				</div>
 			</div>

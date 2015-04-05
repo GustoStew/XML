@@ -33,14 +33,39 @@ public class ModifyFriend extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		Friend currentFriend = (Friend) session.getAttribute("currentFriend");
-		String modifiedMail = request.getParameter("mail");
-		if(!ServiceUser.friendExist(user, modifiedMail) || currentFriend.getMail().equals(modifiedMail)){
+		String newMail = request.getParameter("mail");
+		if(!ServiceUser.friendExist(user, newMail) || currentFriend.getMail().equals(newMail)){
+			String newFirstName, newLastName, newPhone, newAddress;
+			newFirstName = request.getParameter("firstname");
+			newLastName = request.getParameter("lastname");
+			newPhone = request.getParameter("phone");
+			newAddress = request.getParameter("address");
+			System.out.println("prenom" + newFirstName);
+			System.out.println("nom" + newLastName);
+			System.out.println("mail" + newMail);
+			System.out.println("phone" + newPhone);
+			System.out.println("ad" + newAddress);
+			if(newFirstName=="")
+				newFirstName = currentFriend.getFirstName();
+			if(newLastName=="")
+				newLastName = currentFriend.getLastName();
+			if(newMail=="")
+				newMail = currentFriend.getMail();
+			if(newPhone=="")
+				newPhone = currentFriend.getPhone();
+			if(newAddress=="")
+				newAddress = currentFriend.getAddress();
+			System.out.println("prenom" + newFirstName);
+			System.out.println("nom" + newLastName);
+			System.out.println("mail" + newMail);
+			System.out.println("phone" + newPhone);
+			System.out.println("ad" + newAddress);
 			ServiceUser.deleteFriend(user, currentFriend.getMail());
-			Friend newFriend = new Friend(request.getParameter("firstname"), 
-					request.getParameter("lastname"), 
-						request.getParameter("mail"), 
-						request.getParameter("phone"), 
-						request.getParameter("address"));
+			Friend newFriend = new Friend(newFirstName, 
+				  						  newLastName, 
+				  						  newMail, 
+				  						  newPhone, 
+				  						  newAddress);
 			ServiceUser.addFriend(user, newFriend);
 			for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
 				if(request.getParameter(groupTmp.getKey())!=null)
@@ -50,6 +75,7 @@ public class ModifyFriend extends HttpServlet {
 			session.setAttribute("currentFriend", newFriend);
 			this.getServletContext().getRequestDispatcher("/consultInfoFriend.jsp").forward(request, response);
 		}
-		this.getServletContext().getRequestDispatcher("/modifyFriendForm.jsp").forward(request, response);
+		else
+			this.getServletContext().getRequestDispatcher("/modifyFriendForm.jsp").forward(request, response);
 	}
 }

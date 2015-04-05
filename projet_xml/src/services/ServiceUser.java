@@ -57,13 +57,14 @@ public class ServiceUser {
 		String[] searchTab = research.split(" ");
 		HashMap<String, Friend> tabFriend = new HashMap<String, Friend>();
 		for(Entry<String, Friend> friendTmp : u.getFriends().entrySet()){
+			int concordanceCount = 0;
 			for(String s : searchTab){
 				if(ServiceFriend.infoMatchWithWord(friendTmp.getValue(), s)){
-					tabFriend.put(friendTmp.getKey(),friendTmp.getValue());
-					break;
+					concordanceCount++;
 				}
-					
 			}
+			if(concordanceCount==searchTab.length)
+				tabFriend.put(friendTmp.getKey(),friendTmp.getValue());
 		}
 		return tabFriend;
 	}

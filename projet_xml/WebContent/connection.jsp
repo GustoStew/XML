@@ -10,20 +10,61 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+	    $('#newUserForm').submit(function() {
+	    	if($('#pwd').val()==$('#pwdVerif').val()){
+	        	$.ajax({
+	       		 	type : $('#newUserForm').attr('method'),
+	        	    url : '/projet_xml/NewUserAjax',
+	       	     	data : {
+	            		mail : $('#mail').val()
+	            	},
+	            	success : function(data) {
+	            		if(data=="false"){
+	            			alert('Cette adresse mail est déjà utilisée !');
+	            		}
+	            	}
+	        	});
+	    	}
+	    	else{
+	    		alert('Les mots de passe ne sont pas identiques !')
+	    		return false;
+	    	}
+	    });
+  });
+  $(document).ready(function() {
+	    $('#signInForm').submit(function() {
+	        $.ajax({
+	        	type : $('#signInForm').attr('method'),
+	            url : '/projet_xml/SignInAjax',
+	            data : {
+	            	mail : $('#mailAuthentification').val(),
+	            	pwd : $('#pwdAuthentification').val()
+	            },
+	            success : function(data) {
+	            	if(data=="false"){
+	            		alert('Adresse email ou mot de passe invalide !');
+	            	}
+	            }
+	        });
+	    });
+});
+</script>
 </head>
 <body>
 
 <div class="container">
   <h1>Carnet d'adresses</h1>
   <h3>Connexion</h3>
-  <form class="form-inline" action="/projet_xml/LogIn" method="post">
+  <form id="signInForm" class="form-inline" action="/projet_xml/SignIn" method="post">
     <div class="form-group">
       <label for="email">Email :</label>
-      <input type="email" class="form-control" id="mail" name="mail" placeholder="XXX@exemple.com" required>
+      <input type="email" class="form-control" id="mailAuthentification" name="mail" placeholder="XXX@exemple.com" required>
     </div>
     <div class="form-group">
       <label for="pwd">Mot de passe :</label>
-      <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Mot de passe" required>
+      <input type="password" class="form-control" id="pwdAuthentification" name="pwd" placeholder="Mot de passe" required>
     </div>
     <button type="submit" class="btn btn-primary">OK</button>
   </form>
@@ -32,7 +73,7 @@
 <div class="container">
   <h3>Inscription d'un nouvel utilisateur</h3>
   <h4>Rentrer vos informations</h4>
-  <form class="form-horizontal" action="/projet_xml/NewUser" method="post">
+  <form id="newUserForm" class="form-horizontal" action="/projet_xml/NewUser" method="post">
 			<div class="form-group">
 				<label class="col-md-1 control-label">Email</label>
 				<div class="col-md-4">
@@ -45,6 +86,13 @@
 				<div class="col-md-4">
 					<input type="password" class="form-control" id="pwd" 
 						name="pwd"	placeholder="Mot de passe" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-1 control-label">Vérification</label>
+				<div class="col-md-4">
+					<input type="password" class="form-control" id="pwdVerif" 
+						name="pwdVerif"	placeholder="Mot de passe" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -64,7 +112,7 @@
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="phone" 
+					<input type="number" class="form-control" id="phone" 
 						name="phone" placeholder="0610203040" maxlength="10" required>
 				</div>
 			</div>

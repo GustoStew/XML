@@ -9,15 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import services.ServiceUser;
 import classe.User;
 
-
-@WebServlet("/NewFriendAjax")
-public class NewFriendAjax extends HttpServlet {
+@WebServlet("/ModifyUser")
+public class ModifyUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NewFriendAjax() {
+
+    public ModifyUser() {
         super();
     }
 
@@ -28,10 +26,21 @@ public class NewFriendAjax extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		response.setContentType("text/plain");
-		if(ServiceUser.friendExist(user, request.getParameter("mail"))){
-			response.getWriter().write("false");
-		}
+		String newFirstName, newLastName, newPhone, newAddress;
+		newFirstName = request.getParameter("firstname");
+		newLastName = request.getParameter("lastname");
+		newPhone = request.getParameter("phone");
+		newAddress = request.getParameter("address");
+		if(newFirstName!="")
+			user.setFirstName(newFirstName);
+		if(newLastName!="")
+			user.setLastName(newLastName);
+		if(newPhone!="")
+			user.setPhone(newPhone);
+		if(newAddress!="")
+			user.setAddress(newAddress);
+		session.setAttribute("user", user);
+		this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
 	}
 
 }

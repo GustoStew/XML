@@ -45,8 +45,8 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(user.getFriendCount()!=0)
-            	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
+            <% if(user.getFriendCount()!=0){%>
+            	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
@@ -60,7 +60,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/SignOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>

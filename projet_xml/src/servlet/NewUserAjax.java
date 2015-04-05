@@ -8,19 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import classe.ListUserID;
-import classe.User;
 import util.SerializerListID;
-import util.SerializerUser;
+import classe.ListUserID;
 
-
-@WebServlet("/LogIn")
-public class LogIn extends HttpServlet {
+@WebServlet("/NewUserAjax")
+public class NewUserAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public LogIn() {
+
+    public NewUserAjax() {
         super();
     }
 
@@ -32,17 +28,10 @@ public class LogIn extends HttpServlet {
 		ServletContext context = getServletContext();
 		SerializerListID serialListID = new SerializerListID(context.getInitParameter("databasePath") + "UserID.xml");
 		ListUserID listID = serialListID.getLastSave();
-		String idUser = request.getParameter("mail");
-		String pwd = request.getParameter("pwd");
-		if(listID.hasUser(idUser) && listID.getUserPwd(idUser).equals(pwd)){
-			SerializerUser serialUser = new SerializerUser(context.getInitParameter("databasePath") + idUser + ".xml");
-			User user = serialUser.getLastSave();
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			this.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
-		}
-		else{
-			this.getServletContext().getRequestDispatcher("/connection.jsp").forward(request, response);
+		response.setContentType("text/plain");
+		if(listID.getData().containsKey(request.getParameter("mail"))){
+			response.getWriter().write("false");
 		}
 	}
+
 }

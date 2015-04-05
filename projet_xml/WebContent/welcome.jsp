@@ -4,8 +4,6 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
-	<%@ page import="java.util.HashMap" %>
-	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
   <title>Accueil</title>
   <meta charset="utf-8">
@@ -40,14 +38,14 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/SignOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
 </nav>
 <div class="container">
 	<h2>Bonjour <%= user.getFirstName()%> !</h2>
-	<h3>Vos informations <a href="/projet_xml/ModifyUser" id="modify" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a></h3>
+	<h3>Vos informations <a href="/projet_xml/modifyUserForm.jsp" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a></h3>
 	<div class="row">
 		<div class="col-md-1">
 			<h4><span class="label label-info">Prénom</span></h4>

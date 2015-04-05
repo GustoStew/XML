@@ -42,7 +42,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="javascript:window.print()"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
-        <li><a href="/projet_xml/signOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        <li><a href="/projet_xml/SignOut"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
       </ul>
     </div>
   </div>
@@ -94,8 +94,8 @@
       <% }%>
       </div>
       </div>
-      <% if(currentGroup.getMembers().size() != user.getFriends().size()){%>
       <div class="container">
+      <% if(currentGroup.getMembers().size() != user.getFriends().size()){%>
       <div class="col-md-8">
       <h3>Ajouter un ami</h3>
       <form action="/projet_xml/AddFriendToGroup" method="post">
@@ -113,9 +113,9 @@
       	<button type="submit" class="btn btn-default">Ajouter</button>
       </form>
       <br>
-      <a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
-    </div>
     </div>
     <% }%>
+     <a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
+    </div>
 </body>
 </html>

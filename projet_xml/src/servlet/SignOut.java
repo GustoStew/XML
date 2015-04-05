@@ -14,11 +14,11 @@ import util.SerializerUser;
 import classe.User;
 
 
-@WebServlet("/signOut")
-public class signOut extends HttpServlet {
+@WebServlet("/SignOut")
+public class SignOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public signOut() {
+    public SignOut() {
         super();
     }
 
