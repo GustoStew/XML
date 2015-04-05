@@ -27,8 +27,8 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(!ServiceUser.hasNoFriends(user))
-            	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
+            <% if(user.getFriendCount()!=0){%>
+            	<li><a href="/projet_xml/consultListFriend.jsp">Consulter</a></li><% }%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
         </li>
@@ -71,23 +71,23 @@
         </thead>
         <tbody>
         	 <% for(String idFriend : currentGroup.getMembers()){
-  							Friend f = user.getFriends().get(idFriend);
-  							out.println("<tr>");
- 							out.println("<td>"+f.getLastName()+"</td>");
-  							out.println("<td>"+f.getFirstName()+"</td>");
-  							out.println("<td>"+f.getMail()+"</td>");
-  							out.println("<td>");
-  							out.println("<form role=\"form\" action=\"/projet_xml/infoFriend\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-info btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-info-sign\"></i></button>");
-  							out.println("</form>");
-  							out.println("</td>");
-  							out.println("<td>");
-  							out.println("<form role=\"form\" action=\"/projet_xml/DeleteFriendFromGroup\" method=\"post\">");
-  							out.println("<button type=\"submit\" class=\"btn btn-danger btn-md\" name=\"friend\" value=\""+f.getMail()+"\"><i class=\"glyphicon glyphicon-trash\"></i></button>");
-  							out.println("</form>");
-  							out.println("</td>");
-  							out.println("</tr>");
-  					}%>
+  							Friend f = user.getFriends().get(idFriend);%>
+  							<tr>
+ 								<td><%=f.getLastName() %></td>
+  								<td><%=f.getFirstName() %></td>
+  								<td><%=f.getMail() %></td>
+  								<td>
+  									<form action="/projet_xml/infoFriend" method="post">
+  										<button type="submit" class="btn btn-info btn-md" name="friend" value="<%=f.getMail() %>"><i class="glyphicon glyphicon-info-sign"></i></button>
+  									</form>
+  								</td>
+  								<td>
+  									<form action="/projet_xml/DeleteFriendFromGroup" method="post">
+  										<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%=f.getMail() %>"><i class="glyphicon glyphicon-trash"></i></button>
+  									</form>
+  								</td>
+  							</tr>
+  					<% }%>
         </tbody>
       </table>
       </div>
@@ -103,10 +103,10 @@
       		<div class="input-group">
       			<select class="form-control" id="friend" name="friend">
       				<% for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
-      						if(!currentGroup.getMembers().contains(friendTmp.getKey()))
-      							out.println("<option value=\""+ friendTmp.getKey() + "\">" + friendTmp.getValue().getLastName() + " " + friendTmp.getValue().getFirstName() + "</option>");
-      					}
-      				%>
+      						if(!currentGroup.getMembers().contains(friendTmp.getKey())){%>
+      							<option value="<%= friendTmp.getKey()%>"><%= friendTmp.getValue().getLastName()%> <%= friendTmp.getValue().getFirstName()%></option>
+      						<% }
+      					}%>
       			</select>
       		</div>
       	</div>

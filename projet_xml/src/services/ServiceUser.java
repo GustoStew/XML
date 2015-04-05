@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import classe.*;
 
 public class ServiceUser {
+	
 	public static void addFriend(User u, Friend f){
 		u.getFriends().put(f.getMail(), f);
 		u.setFriendCount(u.getFriendCount()+1);
@@ -26,16 +27,6 @@ public class ServiceUser {
 		return u.getGroups().containsKey(idGroup);
 	}
 	
-	public static boolean hasNoFriends(User u){
-		return u.getFriendCount()==0;
-	}
-	
-	public static boolean hasNoGroups(User u){
-		return u.getGroupCount()==0;
-	}
-	
-	
-	
 	public static void deleteFriend(User u, String idFriend){
 		Friend friendTmp = u.getFriends().get(idFriend);
 		ArrayList<String> listGroupTmp = new ArrayList<String>(friendTmp.getGroups());
@@ -49,7 +40,7 @@ public class ServiceUser {
 	public static void deleteFriendFromGroup(User u, String idFriend, String idGroup){
 		Friend f = u.getFriends().get(idFriend);
 		Group g = u.getGroups().get(idGroup);
-		g.deleteFriend(f);
+		ServiceGroup.deleteFriend(g, f);
 	}
 	
 	public static void deleteGroup(User u, String idGroup){
@@ -67,7 +58,7 @@ public class ServiceUser {
 		HashMap<String, Friend> tabFriend = new HashMap<String, Friend>();
 		for(Entry<String, Friend> friendTmp : u.getFriends().entrySet()){
 			for(String s : searchTab){
-				if(friendTmp.getValue().infoMatchWithWord(s)){
+				if(ServiceFriend.infoMatchWithWord(friendTmp.getValue(), s)){
 					tabFriend.put(friendTmp.getKey(),friendTmp.getValue());
 					break;
 				}

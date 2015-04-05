@@ -10,13 +10,10 @@
 <title>Nouvel Ami</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
   $(document).ready(function() {
 	    $('#newFriendForm').submit(function() {
 	        $.ajax({
@@ -33,7 +30,7 @@
 	        });
 	    });
   });
-  </script>
+</script>
 </head>
 <body>
 <nav class="navbar navbar-inner">
@@ -46,7 +43,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><span class="badge-active"><%= user.getFriendCount()%></span> Amis</b></a>
           <ul class="dropdown-menu" >
-            <% if(!ServiceUser.hasNoFriends(user))
+            <% if(user.getFriendCount()!=0)
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import services.ServiceGroup;
 import services.ServiceUser;
 import classe.Friend;
 import classe.Group;
@@ -43,7 +44,7 @@ public class ModifyFriend extends HttpServlet {
 			ServiceUser.addFriend(user, newFriend);
 			for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
 				if(request.getParameter(groupTmp.getKey())!=null)
-					groupTmp.getValue().addFriend(newFriend);
+					ServiceGroup.addFriend(groupTmp.getValue(),newFriend);
 			}
 			session.setAttribute("user", user);
 			session.setAttribute("currentFriend", newFriend);

@@ -41,7 +41,7 @@ public class NewFriend extends HttpServlet {
 				ServiceUser.addFriend(user, newFriend);		
 				for(Entry<String, Group> groupTmp : user.getGroups().entrySet()){
 					if(request.getParameter(groupTmp.getKey())!=null)
-						groupTmp.getValue().addFriend(newFriend);
+						ServiceGroup.addFriend(groupTmp.getValue(),newFriend);
 				}
 				session.setAttribute("user", user);
 				this.getServletContext().getRequestDispatcher("/consultListFriend.jsp").forward(request, response);

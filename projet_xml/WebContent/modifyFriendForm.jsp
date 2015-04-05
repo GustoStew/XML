@@ -50,7 +50,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><span class="badge-active"><%= user.getFriendCount()%></span> Amis</b></a>
           <ul class="dropdown-menu" >
-            <% if(!ServiceUser.hasNoFriends(user))
+            <% if(user.getFriendCount()!=0)
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>

@@ -2,8 +2,9 @@ package classe;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import javax.jws.WebService;
 
+@WebService
 public class Group {
 	private String name;
 	private ArrayList<String> members;
@@ -31,22 +32,6 @@ public class Group {
 
 	public void setMembers(ArrayList<String> members) {
 		this.members = members;
-	}
-
-	public void addFriend(Friend f){
-		members.add(f.getMail());
-		f.getGroups().add(name);
-	}
-	
-	public void deleteFriend(Friend f){
-		members.remove(f.getMail());
-		Iterator<String> iterator = f.getGroups().iterator();
-		while(iterator.hasNext()){
-			String s = iterator.next();
-			if(s.equals(name)){
-				iterator.remove();
-			}
-		}
 	}
 	
 }

@@ -45,7 +45,7 @@
         <li class="btn-group">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge-active"><%= user.getFriendCount()%></span> Amis</a>
           <ul class="dropdown-menu" >
-            <% if(!ServiceUser.hasNoFriends(user))
+            <% if(user.getFriendCount()!=0)
             	out.println("<li><a href=\"/projet_xml/consultListFriend.jsp\">Consulter</a></li>");%>
             <li><a href="/projet_xml/newFriendForm.jsp">Ajouter</a></li>
           </ul>
@@ -68,7 +68,7 @@
 <div class="container">
 	<div class="col-md-6">
       <h2>Vos groupes</h2>
-      <% if(ServiceUser.hasNoGroups(user)){%>
+      <% if(user.getGroupCount()==0){%>
       	<div class="alert alert-info">Vous n'avez pas encore de groupe.</div>
       	<% }
       	else {%>

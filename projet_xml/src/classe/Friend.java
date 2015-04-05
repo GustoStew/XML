@@ -1,7 +1,9 @@
 package classe;
 
 import java.util.ArrayList;
+import javax.jws.WebService;
 
+@WebService
 public class Friend {
 	private String firstName, lastName, mail, phone, address;
 	private ArrayList<String> groups;
@@ -65,23 +67,6 @@ public class Friend {
 
 	public void setGroups(ArrayList<String> groups) {
 		this.groups = groups;
-	}
-	
-	public boolean infoMatchWithWord(String search){
-		for(String s : groups){
-			System.out.println(s);
-			if(search.equalsIgnoreCase(s)){
-				System.out.println(s+search);
-				return true;
-			}
-		}
-		if(firstName.contains(search)
-    	|| lastName.contains(search)
-    	|| mail.contains(search)
-    	|| phone.contains(search)
-    	|| address.contains(search))
-			return true;
-		return false;
 	}
 	
 }

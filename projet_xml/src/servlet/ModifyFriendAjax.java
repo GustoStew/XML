@@ -29,6 +29,7 @@ public class ModifyFriendAjax extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
+		System.out.println("modifyFriendajax");
 		Friend currentFriend = (Friend) session.getAttribute("currentFriend");
 		String newMail = request.getParameter("mail");
 		response.setContentType("text/plain");
@@ -39,5 +40,4 @@ public class ModifyFriendAjax extends HttpServlet {
 			response.getWriter().write("true");
 		}
 	}
-
 }

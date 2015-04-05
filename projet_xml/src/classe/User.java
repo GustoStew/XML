@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import javax.jws.WebService;
 
-
-
 @WebService
 public class User {
 	private String firstName, lastName, mail, phone, address;

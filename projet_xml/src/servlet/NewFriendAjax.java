@@ -13,7 +13,7 @@ import services.ServiceUser;
 import classe.User;
 
 
-@WebServlet("/CheckFriendAjax")
+@WebServlet("/NewFriendAjax")
 public class NewFriendAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
