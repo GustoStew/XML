@@ -9,29 +9,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import classe.*;
 
-import services.ServiceUser;
-import classe.Friend;
-import classe.User;
-
-
+/**
+ * Servlet permettant d'effectuer une recherche parmis les informations des différents amis d'un utilisateur
+ * @author Germain LE GUEN et Roxanne COUSIN
+ * @see User
+ * @see Friend
+ */
 @WebServlet("/Search")
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+	/**
+	 * Constructeur par défaut
+	 */
     public Search() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
+    /**
+     * Recherche une chaine de caractères parmis les informations des amis
+     * @param request Paramètre par défaut 
+     * @param response Paramètre par défaut
+     * @throws ServletException Exception par défaut
+     * @throws IOException Exception par défaut
+     * @see User#searchMatch(String)
+     * @see User#User()
+     * @see User#setFriends(HashMap)
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//On récupère les données nécessaires depuis las ession et la request
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		HashMap<String, Friend> tabFriend = ServiceUser.searchMatch(user, request.getParameter("search"));
+		
+		//On récupère une HashMap contenant les amis dont les informations concordent avec la chaine de caractères donnée
+		HashMap<String, Friend> tabFriend = user.searchMatch(request.getParameter("search"));
+		
+		//On crée un utilisateur factice dans lequel on place la HashMap
+		//Cela permet de faciliter le transfert des informations vers la jsp
 		User userTmp = new User();
 		userTmp.setFriends(tabFriend);
 		userTmp.setFriendCount(tabFriend.size());

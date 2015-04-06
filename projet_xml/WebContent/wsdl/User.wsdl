@@ -25,15 +25,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="setAddressResponse">
     <complexType/>
    </element>
-   <element name="getGroups">
-    <complexType/>
-   </element>
-   <element name="getGroupsResponse">
+   <element name="addGroup">
     <complexType>
      <sequence>
-      <element name="getGroupsReturn" type="apachesoap:Map"/>
+      <element name="name" type="xsd:string"/>
      </sequence>
     </complexType>
+   </element>
+   <element name="addGroupResponse">
+    <complexType/>
+   </element>
+   <element name="deleteGroup">
+    <complexType>
+     <sequence>
+      <element name="idGroup" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteGroupResponse">
+    <complexType/>
    </element>
    <element name="getLastName">
     <complexType/>
@@ -42,6 +52,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="getLastNameReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getGroups">
+    <complexType/>
+   </element>
+   <element name="getGroupsResponse">
+    <complexType>
+     <sequence>
+      <element name="getGroupsReturn" type="apachesoap:Map"/>
      </sequence>
     </complexType>
    </element>
@@ -55,86 +75,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="setGroupsResponse">
     <complexType/>
    </element>
-   <element name="setMail">
-    <complexType>
-     <sequence>
-      <element name="mail" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setMailResponse">
-    <complexType/>
-   </element>
-   <element name="getMail">
-    <complexType/>
-   </element>
-   <element name="getMailResponse">
-    <complexType>
-     <sequence>
-      <element name="getMailReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setPhone">
-    <complexType>
-     <sequence>
-      <element name="phone" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setPhoneResponse">
-    <complexType/>
-   </element>
-   <element name="getFriends">
-    <complexType/>
-   </element>
-   <element name="getFriendsResponse">
-    <complexType>
-     <sequence>
-      <element name="getFriendsReturn" type="apachesoap:Map"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getPhone">
-    <complexType/>
-   </element>
-   <element name="getPhoneResponse">
-    <complexType>
-     <sequence>
-      <element name="getPhoneReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getFirstName">
-    <complexType/>
-   </element>
-   <element name="getFirstNameResponse">
-    <complexType>
-     <sequence>
-      <element name="getFirstNameReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setFirstName">
-    <complexType>
-     <sequence>
-      <element name="firstName" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setFirstNameResponse">
-    <complexType/>
-   </element>
-   <element name="setLastName">
-    <complexType>
-     <sequence>
-      <element name="lastName" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="setLastNameResponse">
-    <complexType/>
-   </element>
    <element name="getFriendCount">
     <complexType/>
    </element>
@@ -142,6 +82,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="getFriendCountReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setGroupCount">
+    <complexType>
+     <sequence>
+      <element name="groupCount" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setGroupCountResponse">
+    <complexType/>
+   </element>
+   <element name="groupExist">
+    <complexType>
+     <sequence>
+      <element name="idGroup" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="groupExistResponse">
+    <complexType>
+     <sequence>
+      <element name="groupExistReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -165,15 +129,119 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="setGroupCount">
+   <element name="setFirstName">
     <complexType>
      <sequence>
-      <element name="groupCount" type="xsd:int"/>
+      <element name="firstName" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="setGroupCountResponse">
+   <element name="setFirstNameResponse">
     <complexType/>
+   </element>
+   <element name="deleteFriendFromGroup">
+    <complexType>
+     <sequence>
+      <element name="idFriend" type="xsd:string"/>
+      <element name="idGroup" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteFriendFromGroupResponse">
+    <complexType/>
+   </element>
+   <element name="getFirstName">
+    <complexType/>
+   </element>
+   <element name="getFirstNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getFirstNameReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteFriend">
+    <complexType>
+     <sequence>
+      <element name="idFriend" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteFriendResponse">
+    <complexType/>
+   </element>
+   <element name="setLastName">
+    <complexType>
+     <sequence>
+      <element name="lastName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setLastNameResponse">
+    <complexType/>
+   </element>
+   <element name="friendExist">
+    <complexType>
+     <sequence>
+      <element name="idFriend" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="friendExistResponse">
+    <complexType>
+     <sequence>
+      <element name="friendExistReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFriends">
+    <complexType/>
+   </element>
+   <element name="getFriendsResponse">
+    <complexType>
+     <sequence>
+      <element name="getFriendsReturn" type="apachesoap:Map"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addFriend">
+    <complexType>
+     <sequence>
+      <element name="f" type="impl:Friend"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Friend">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="groups" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="mail" nillable="true" type="xsd:string"/>
+     <element name="phone" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="addFriendResponse">
+    <complexType/>
+   </element>
+   <element name="searchMatch">
+    <complexType>
+     <sequence>
+      <element name="research" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchMatchResponse">
+    <complexType>
+     <sequence>
+      <element name="searchMatchReturn" type="apachesoap:Map"/>
+     </sequence>
+    </complexType>
    </element>
    <element name="setFriends">
     <complexType>
@@ -185,8 +253,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="setFriendsResponse">
     <complexType/>
    </element>
+   <element name="setMail">
+    <complexType>
+     <sequence>
+      <element name="mail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMailResponse">
+    <complexType/>
+   </element>
+   <element name="setPhone">
+    <complexType>
+     <sequence>
+      <element name="phone" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setPhoneResponse">
+    <complexType/>
+   </element>
+   <element name="getMail">
+    <complexType/>
+   </element>
+   <element name="getMailResponse">
+    <complexType>
+     <sequence>
+      <element name="getMailReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPhone">
+    <complexType/>
+   </element>
+   <element name="getPhoneResponse">
+    <complexType>
+     <sequence>
+      <element name="getPhoneReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://classe"/>
    <complexType name="mapItem">
     <sequence>
      <element name="key" nillable="true" type="xsd:anyType"/>
@@ -201,49 +310,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="setGroupsResponse">
-
-      <wsdl:part element="impl:setGroupsResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="setAddressRequest">
-
-      <wsdl:part element="impl:setAddress" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="setGroupCountResponse">
 
       <wsdl:part element="impl:setGroupCountResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="setMailRequest">
-
-      <wsdl:part element="impl:setMail" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="setFriendCountRequest">
-
-      <wsdl:part element="impl:setFriendCount" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getGroupCountResponse">
-
-      <wsdl:part element="impl:getGroupCountResponse" name="parameters">
 
       </wsdl:part>
 
@@ -265,6 +334,222 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="setGroupCountRequest">
+
+      <wsdl:part element="impl:setGroupCount" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAddressResponse">
+
+      <wsdl:part element="impl:setAddressResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="groupExistResponse">
+
+      <wsdl:part element="impl:groupExistResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMailResponse">
+
+      <wsdl:part element="impl:getMailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteGroupRequest">
+
+      <wsdl:part element="impl:deleteGroup" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addFriendRequest">
+
+      <wsdl:part element="impl:addFriend" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addGroupResponse">
+
+      <wsdl:part element="impl:addGroupResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="friendExistRequest">
+
+      <wsdl:part element="impl:friendExist" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPhoneResponse">
+
+      <wsdl:part element="impl:setPhoneResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addFriendResponse">
+
+      <wsdl:part element="impl:addFriendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setLastNameRequest">
+
+      <wsdl:part element="impl:setLastName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteFriendRequest">
+
+      <wsdl:part element="impl:deleteFriend" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressResponse">
+
+      <wsdl:part element="impl:getAddressResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFriendsRequest">
+
+      <wsdl:part element="impl:getFriends" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGroupCountRequest">
+
+      <wsdl:part element="impl:getGroupCount" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addGroupRequest">
+
+      <wsdl:part element="impl:addGroup" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFriendsResponse">
+
+      <wsdl:part element="impl:getFriendsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGroupsRequest">
+
+      <wsdl:part element="impl:getGroups" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteFriendFromGroupRequest">
+
+      <wsdl:part element="impl:deleteFriendFromGroup" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setFriendsRequest">
+
+      <wsdl:part element="impl:setFriends" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setGroupsResponse">
+
+      <wsdl:part element="impl:setGroupsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAddressRequest">
+
+      <wsdl:part element="impl:setAddress" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="groupExistRequest">
+
+      <wsdl:part element="impl:groupExist" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setMailRequest">
+
+      <wsdl:part element="impl:setMail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteFriendResponse">
+
+      <wsdl:part element="impl:deleteFriendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setFriendCountRequest">
+
+      <wsdl:part element="impl:setFriendCount" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGroupCountResponse">
+
+      <wsdl:part element="impl:getGroupCountResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getFriendCountResponse">
 
       <wsdl:part element="impl:getFriendCountResponse" name="parameters">
@@ -273,9 +558,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="setGroupCountRequest">
+   <wsdl:message name="deleteGroupResponse">
 
-      <wsdl:part element="impl:setGroupCount" name="parameters">
+      <wsdl:part element="impl:deleteGroupResponse" name="parameters">
 
       </wsdl:part>
 
@@ -313,22 +598,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="setAddressResponse">
-
-      <wsdl:part element="impl:setAddressResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getMailResponse">
-
-      <wsdl:part element="impl:getMailResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getLastNameRequest">
 
       <wsdl:part element="impl:getLastName" name="parameters">
@@ -345,9 +614,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="deleteFriendFromGroupResponse">
+
+      <wsdl:part element="impl:deleteFriendFromGroupResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getMailRequest">
 
       <wsdl:part element="impl:getMail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchMatchRequest">
+
+      <wsdl:part element="impl:searchMatch" name="parameters">
 
       </wsdl:part>
 
@@ -377,14 +662,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="setPhoneResponse">
-
-      <wsdl:part element="impl:setPhoneResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getPhoneResponse">
 
       <wsdl:part element="impl:getPhoneResponse" name="parameters">
@@ -396,14 +673,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getFirstNameRequest">
 
       <wsdl:part element="impl:getFirstName" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="setLastNameRequest">
-
-      <wsdl:part element="impl:setLastName" name="parameters">
 
       </wsdl:part>
 
@@ -433,14 +702,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getAddressResponse">
-
-      <wsdl:part element="impl:getAddressResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="setFirstNameRequest">
 
       <wsdl:part element="impl:setFirstName" name="parameters">
@@ -449,41 +710,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getFriendsRequest">
+   <wsdl:message name="searchMatchResponse">
 
-      <wsdl:part element="impl:getFriends" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getGroupCountRequest">
-
-      <wsdl:part element="impl:getGroupCount" name="parameters">
+      <wsdl:part element="impl:searchMatchResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getFriendsResponse">
+   <wsdl:message name="friendExistResponse">
 
-      <wsdl:part element="impl:getFriendsResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getGroupsRequest">
-
-      <wsdl:part element="impl:getGroups" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="setFriendsRequest">
-
-      <wsdl:part element="impl:setFriends" name="parameters">
+      <wsdl:part element="impl:friendExistResponse" name="parameters">
 
       </wsdl:part>
 
@@ -515,13 +752,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getGroups">
+      <wsdl:operation name="addGroup">
 
-         <wsdl:input message="impl:getGroupsRequest" name="getGroupsRequest">
+         <wsdl:input message="impl:addGroupRequest" name="addGroupRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getGroupsResponse" name="getGroupsResponse">
+         <wsdl:output message="impl:addGroupResponse" name="addGroupResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteGroup">
+
+         <wsdl:input message="impl:deleteGroupRequest" name="deleteGroupRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteGroupResponse" name="deleteGroupResponse">
 
        </wsdl:output>
 
@@ -539,6 +788,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getGroups">
+
+         <wsdl:input message="impl:getGroupsRequest" name="getGroupsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getGroupsResponse" name="getGroupsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="setGroups">
 
          <wsdl:input message="impl:setGroupsRequest" name="setGroupsRequest">
@@ -551,102 +812,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setMail">
-
-         <wsdl:input message="impl:setMailRequest" name="setMailRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setMailResponse" name="setMailResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getMail">
-
-         <wsdl:input message="impl:getMailRequest" name="getMailRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getMailResponse" name="getMailResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setPhone">
-
-         <wsdl:input message="impl:setPhoneRequest" name="setPhoneRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setPhoneResponse" name="setPhoneResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getFriends">
-
-         <wsdl:input message="impl:getFriendsRequest" name="getFriendsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getFriendsResponse" name="getFriendsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getPhone">
-
-         <wsdl:input message="impl:getPhoneRequest" name="getPhoneRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getPhoneResponse" name="getPhoneResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getFirstName">
-
-         <wsdl:input message="impl:getFirstNameRequest" name="getFirstNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getFirstNameResponse" name="getFirstNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setFirstName">
-
-         <wsdl:input message="impl:setFirstNameRequest" name="setFirstNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setFirstNameResponse" name="setFirstNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setLastName">
-
-         <wsdl:input message="impl:setLastNameRequest" name="setLastNameRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:setLastNameResponse" name="setLastNameResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getFriendCount">
 
          <wsdl:input message="impl:getFriendCountRequest" name="getFriendCountRequest">
@@ -654,6 +819,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:getFriendCountResponse" name="getFriendCountResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setGroupCount">
+
+         <wsdl:input message="impl:setGroupCountRequest" name="setGroupCountRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setGroupCountResponse" name="setGroupCountResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="groupExist">
+
+         <wsdl:input message="impl:groupExistRequest" name="groupExistRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:groupExistResponse" name="groupExistResponse">
 
        </wsdl:output>
 
@@ -683,13 +872,109 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setGroupCount">
+      <wsdl:operation name="setFirstName">
 
-         <wsdl:input message="impl:setGroupCountRequest" name="setGroupCountRequest">
+         <wsdl:input message="impl:setFirstNameRequest" name="setFirstNameRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:setGroupCountResponse" name="setGroupCountResponse">
+         <wsdl:output message="impl:setFirstNameResponse" name="setFirstNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFriendFromGroup">
+
+         <wsdl:input message="impl:deleteFriendFromGroupRequest" name="deleteFriendFromGroupRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteFriendFromGroupResponse" name="deleteFriendFromGroupResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFirstName">
+
+         <wsdl:input message="impl:getFirstNameRequest" name="getFirstNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFirstNameResponse" name="getFirstNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFriend">
+
+         <wsdl:input message="impl:deleteFriendRequest" name="deleteFriendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteFriendResponse" name="deleteFriendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setLastName">
+
+         <wsdl:input message="impl:setLastNameRequest" name="setLastNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setLastNameResponse" name="setLastNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="friendExist">
+
+         <wsdl:input message="impl:friendExistRequest" name="friendExistRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:friendExistResponse" name="friendExistResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFriends">
+
+         <wsdl:input message="impl:getFriendsRequest" name="getFriendsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFriendsResponse" name="getFriendsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addFriend">
+
+         <wsdl:input message="impl:addFriendRequest" name="addFriendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addFriendResponse" name="addFriendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchMatch">
+
+         <wsdl:input message="impl:searchMatchRequest" name="searchMatchRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchMatchResponse" name="searchMatchResponse">
 
        </wsdl:output>
 
@@ -702,6 +987,54 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:setFriendsResponse" name="setFriendsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMail">
+
+         <wsdl:input message="impl:setMailRequest" name="setMailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setMailResponse" name="setMailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPhone">
+
+         <wsdl:input message="impl:setPhoneRequest" name="setPhoneRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setPhoneResponse" name="setPhoneResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMail">
+
+         <wsdl:input message="impl:getMailRequest" name="getMailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMailResponse" name="getMailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPhone">
+
+         <wsdl:input message="impl:getPhoneRequest" name="getPhoneRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPhoneResponse" name="getPhoneResponse">
 
        </wsdl:output>
 
@@ -749,17 +1082,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getGroups">
+      <wsdl:operation name="addGroup">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getGroupsRequest">
+         <wsdl:input name="addGroupRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getGroupsResponse">
+         <wsdl:output name="addGroupResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteGroupRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteGroupResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -785,6 +1136,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getGroups">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGroupsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGroupsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="setGroups">
 
          <wsdlsoap:operation soapAction=""/>
@@ -803,150 +1172,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setMail">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setMailRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setMailResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getMail">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getMailRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getMailResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setPhone">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setPhoneRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setPhoneResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getFriends">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getFriendsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getFriendsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getPhone">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getPhoneRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getPhoneResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getFirstName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getFirstNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getFirstNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setFirstName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setFirstNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setFirstNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="setLastName">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="setLastNameRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="setLastNameResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getFriendCount">
 
          <wsdlsoap:operation soapAction=""/>
@@ -958,6 +1183,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getFriendCountResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setGroupCount">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setGroupCountRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setGroupCountResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="groupExist">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="groupExistRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="groupExistResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1001,17 +1262,161 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setGroupCount">
+      <wsdl:operation name="setFirstName">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="setGroupCountRequest">
+         <wsdl:input name="setFirstNameRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="setGroupCountResponse">
+         <wsdl:output name="setFirstNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFriendFromGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteFriendFromGroupRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteFriendFromGroupResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFirstName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFirstNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFirstNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteFriend">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteFriendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteFriendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setLastName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setLastNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setLastNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="friendExist">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="friendExistRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="friendExistResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFriends">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFriendsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFriendsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addFriend">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addFriendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addFriendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchMatch">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchMatchRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchMatchResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1030,6 +1435,78 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="setFriendsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setMailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setMailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPhone">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPhoneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPhoneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPhone">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPhoneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPhoneResponse">
 
             <wsdlsoap:body use="literal"/>
 

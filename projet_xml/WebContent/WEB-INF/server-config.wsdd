@@ -66,11 +66,11 @@
    <ns1:parameter qname="ns21:friends" type="ns22:Map" xmlns:ns22="http://xml.apache.org/xml-soap"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="getPhone setFriendCount getGroupCount setAddress setPhone setFriends getLastName getMail setLastName getFriendCount setMail setFirstName getFriends getAddress setGroupCount setGroups getFirstName getGroups"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="User"/>
-  <ns1:parameter name="className" value="classe.User"/>
-  <ns1:parameter name="wsdlServicePort" value="User"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://classe,http://xml.apache.org/xml-soap"/>
+  <ns1:parameter name="wsdlServicePort" value="User"/>
+  <ns1:parameter name="className" value="classe.User"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://classe"/>
   <ns1:parameter name="wsdlServiceElement" value="UserService"/>
  </ns1:service>

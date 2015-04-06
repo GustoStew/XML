@@ -115,7 +115,9 @@
       <br>
     </div>
     <% }%>
-     <a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
     </div>
+    <div class="container">
+     	<a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
+     </div>
 </body>
 </html>

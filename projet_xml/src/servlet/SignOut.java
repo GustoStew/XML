@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,31 +8,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import util.SerializerUser;
-import classe.User;
-
-
+/**
+ * Servlet permettant la destruction de la session 
+ * @author Germain LE GUEN et Roxanne COUSIN
+ *
+ */
 @WebServlet("/SignOut")
 public class SignOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructeur par défaut
+	 */
     public SignOut() {
         super();
     }
 
+    /**
+     * Détruit la session et redirige vers la page d'accueil
+     * @param request Paramètre par défaut 
+     * @param response Paramètre par défaut
+     * @throws ServletException Exception par défaut
+     * @throws IOException Exception par défaut
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		ServletContext context = getServletContext();
-		System.out.println(user.getMail());
-		SerializerUser serialUser = new SerializerUser(context.getInitParameter("databasePath") + user.getMail() + ".xml");
-		session.removeAttribute("user");
-		serialUser.save(user);
-		this.getServletContext().getRequestDispatcher("/connection.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		session.invalidate();
+		response.sendRedirect("/projet_xml/connection.jsp");
+		return;
 	}
 
 }
