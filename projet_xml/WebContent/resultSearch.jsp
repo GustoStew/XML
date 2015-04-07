@@ -4,7 +4,6 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
-	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -66,29 +65,29 @@
           </tr>
         </thead>
         <tbody>
-        	 <% for(Entry<String, Friend> friendTmp : userTmp.getFriends().entrySet()){ %>
-  							<% Friend f = friendTmp.getValue(); %>
-  							<tr>
- 							<td><%= f.getLastName()%></td>
- 							<td><%= f.getFirstName()%></td>
- 							<td><%= f.getMail()%></td>
- 							<td>
- 								<form action="/projet_xml/infoFriend" method="post">
- 									<button type="submit" class="btn btn-info btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-info-sign"></i></button>
- 								</form>
- 							</td>
- 							<td>
- 								<form action="/projet_xml/DeleteFriend" method="post">
- 									<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-trash"></i></button>
- 								</form>
- 							</td>
- 							<tr>
- 					<%} %>
+        	<% for(Entry<String, Friend> friendTmp : userTmp.getFriends().entrySet()){ %>
+  				<% Friend f = friendTmp.getValue(); %>
+  					<tr>
+ 						<td><%= f.getLastName()%></td>
+ 						<td><%= f.getFirstName()%></td>
+ 						<td><%= f.getMail()%></td>
+ 						<td>
+ 							<form action="/projet_xml/infoFriend" method="post">
+ 								<button type="submit" class="btn btn-info btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-info-sign"></i></button>
+ 							</form>
+ 						</td>
+ 						<td>
+ 							<form action="/projet_xml/DeleteFriend" method="post">
+ 								<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%= f.getMail()%>"><i class="glyphicon glyphicon-trash"></i></button>
+ 							</form>
+ 						</td>
+ 					<tr>
+ 				<%} %>
         </tbody>
       </table>
       </div>
       <% }%>
     </div>
-    </div>
+</div>
 </body>
 </html>

@@ -11,6 +11,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
+	//Lors d'une inscription, on commence par tester l'égalité des mots de passe fournis
+	//Si ils sont égaux alors on envoie l'adresse mail saisie à la servlet NewUserAjax pour validation
+	//Sinon on affiche une alerte
+	//Dans le cas où la requête AJAX a été envoyé
+	//Si elle ne renvoie rien alors le formulaire est envoyé
+	//Sinon on affiche une alerte, à la fermeture le formulaire sera ensuite envoyé mais ne sera pas effectif dans la servlet
   $(document).ready(function() {
 	    $('#newUserForm').submit(function() {
 	    	if($('#pwd').val()==$('#pwdVerif').val()){
@@ -33,6 +40,10 @@
 	    	}
 	    });
   });
+	
+	//Lors d'une connexion, on envoie l'adresse mail et le mot de passe fournis à la servlet SignInAjax pour validation
+	//Si elle ne renvoie rien alors le formulaire est envoyé
+	//Sinon on affiche une alerte, à la fermeture le formulaire sera ensuite envoyé mais ne sera pas effectif dans la servlet
   $(document).ready(function() {
 	    $('#signInForm').submit(function() {
 	        $.ajax({
@@ -49,11 +60,10 @@
 	            }
 	        });
 	    });
-});
+	});	
 </script>
 </head>
 <body>
-
 <div class="container">
   <h1>Carnet d'adresses</h1>
   <h3>Connexion</h3>
@@ -112,7 +122,7 @@
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
-					<input type="number" class="form-control" id="phone" 
+					<input type="text" class="form-control" id="phone" 
 						name="phone" placeholder="0610203040" maxlength="10" required>
 				</div>
 			</div>

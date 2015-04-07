@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import util.SerializerListID;
-import util.SerializerUser;
 import classe.ListUserID;
 
 /**

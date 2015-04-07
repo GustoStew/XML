@@ -4,7 +4,6 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
-	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -57,67 +56,67 @@
       	 <div class="alert alert-info">Vous n'avez pas encore d'ami dans ce groupe.</div> 
       <% }
       	else{%>                                                                         
-      <div class="table-responsive">   
-      <h3>Liste des membres</h3>       
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Mail</th>
-            <th>Infos</th>
-            <th>Supprimer</th>
-          </tr>
-        </thead>
-        <tbody>
-        	 <% for(String idFriend : currentGroup.getMembers()){
-  							Friend f = user.getFriends().get(idFriend);%>
-  							<tr>
- 								<td><%=f.getLastName() %></td>
-  								<td><%=f.getFirstName() %></td>
-  								<td><%=f.getMail() %></td>
-  								<td>
-  									<form action="/projet_xml/infoFriend" method="post">
-  										<button type="submit" class="btn btn-info btn-md" name="friend" value="<%=f.getMail() %>"><i class="glyphicon glyphicon-info-sign"></i></button>
-  									</form>
-  								</td>
-  								<td>
-  									<form action="/projet_xml/DeleteFriendFromGroup" method="post">
-  										<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%=f.getMail() %>"><i class="glyphicon glyphicon-trash"></i></button>
-  									</form>
-  								</td>
-  							</tr>
-  					<% }%>
-        </tbody>
-      </table>
+      	<div class="table-responsive">   
+      		<h3>Liste des membres</h3>       
+      		<table class="table">
+      			<thead>
+          			<tr>
+            		<th>Nom</th>
+            		<th>Prénom</th>
+            		<th>Mail</th>
+          	 		<th>Infos</th>
+          	 		<th>Supprimer</th>
+          			</tr>
+       			</thead>
+        		<tbody>
+        	 	<% for(String idFriend : currentGroup.getMembers()){
+  						Friend f = user.getFriends().get(idFriend);%>
+  						<tr>
+ 							<td><%=f.getLastName() %></td>
+  							<td><%=f.getFirstName() %></td>
+  							<td><%=f.getMail() %></td>
+  							<td>
+  								<form action="/projet_xml/infoFriend" method="post">
+  									<button type="submit" class="btn btn-info btn-md" name="friend" value="<%=f.getMail() %>"><i class="glyphicon glyphicon-info-sign"></i></button>
+  								</form>
+  							</td>
+  							<td>
+  								<form action="/projet_xml/DeleteFriendFromGroup" method="post">
+  									<button type="submit" class="btn btn-danger btn-md" name="friend" value="<%=f.getMail() %>"><i class="glyphicon glyphicon-trash"></i></button>
+  								</form>
+  							</td>
+  						</tr>
+  				<% }%>
+			</tbody>
+      	</table>
       </div>
       <% }%>
       </div>
-      </div>
-      <div class="container">
-      <% if(currentGroup.getMembers().size() != user.getFriends().size()){%>
-      <div class="col-md-8">
-      <h3>Ajouter un ami</h3>
-      <form action="/projet_xml/AddFriendToGroup" method="post">
-      	<div class="form-group">
-      		<div class="input-group">
-      			<select class="form-control" id="friend" name="friend">
-      				<% for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
-      						if(!currentGroup.getMembers().contains(friendTmp.getKey())){%>
-      							<option value="<%= friendTmp.getKey()%>"><%= friendTmp.getValue().getLastName()%> <%= friendTmp.getValue().getFirstName()%></option>
-      						<% }
-      					}%>
-      			</select>
-      		</div>
-      	</div>
-      	<button type="submit" class="btn btn-default">Ajouter</button>
-      </form>
-      <br>
-    </div>
+</div>
+<div class="container">
+	<% if(currentGroup.getMembers().size() != user.getFriends().size()){%>
+    	<div class="col-md-8">
+      		<h3>Ajouter un ami</h3>
+      		<form action="/projet_xml/AddFriendToGroup" method="post">
+      			<div class="form-group">
+      				<div class="input-group">
+      					<select class="form-control" id="friend" name="friend">
+      						<% for(Entry<String, Friend> friendTmp : user.getFriends().entrySet()){
+      							if(!currentGroup.getMembers().contains(friendTmp.getKey())){%>
+      								<option value="<%= friendTmp.getKey()%>"><%= friendTmp.getValue().getLastName()%> <%= friendTmp.getValue().getFirstName()%></option>
+      							<% }
+      						}%>
+      					</select>
+      				</div>
+      			</div>
+      			<button type="submit" class="btn btn-success">Ajouter</button>
+      		</form>
+      		<br>
+    	</div>
     <% }%>
-    </div>
-    <div class="container">
-     	<a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
-     </div>
+</div>
+<div class="container">
+   	<a href="/projet_xml/DeleteGroup" id="delete" class="btn btn-danger"> Supprimer le groupe <i class="glyphicon glyphicon-trash"></i></a>
+</div>
 </body>
 </html>

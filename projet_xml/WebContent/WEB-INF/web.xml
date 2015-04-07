@@ -7,7 +7,7 @@
   <context-param>
     <description>Dossier contenant les données</description>
     <param-name>databasePath</param-name>
-    <param-value>/Users/germainleguen/Dev/</param-value>
+    <param-value>/Users/germainleguen/Dev/database/</param-value>
   </context-param>
   <listener>
     <listener-class>util.SessionListener</listener-class>

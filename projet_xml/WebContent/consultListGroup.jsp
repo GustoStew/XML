@@ -4,7 +4,6 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
-	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -16,22 +15,26 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript">
-  $(document).ready(function() {
-	    $('#newGroupForm').submit(function() {
+  
+  	// On envoie le nom du groupe saisi à la servlet NewGroupAjax pour validation
+  	//Si elle ne renvoie rien alors le formulaire est envoyé
+  	//Sinon on affiche une alerte, à la fermeture le formulaire sera ensuite envoyé mais ne sera pas effectif dans la servlet 
+  	$(document).ready(function() {
+		$('#newGroupForm').submit(function() {
 	        $.ajax({
-	        	type : $('#newGroupForm').attr('method'),
-	            url : '/projet_xml/NewGroupAjax',
-	            data : {
-	            nameGroup : $('#nameGroup').val()
-	            },
-	            success : function(data) {
-	            	if(data=="false"){
-	            		alert('Vous possédez déjà un groupe nommé ainsi !');
-	            	}
-	            }
+	       		type : $('#newGroupForm').attr('method'),
+	           	url : '/projet_xml/NewGroupAjax',
+	       	 	data : {
+	           	nameGroup : $('#nameGroup').val()
+	    	   	},
+	           	success : function(data) {
+	           		if(data=="false"){
+	           			alert('Vous possédez déjà un groupe nommé ainsi !');
+	           		}
+	           	}
 	        });
 	    });
-  });
+  	});
   </script>
 </head>
 <body>

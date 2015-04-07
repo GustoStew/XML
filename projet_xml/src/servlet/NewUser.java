@@ -57,7 +57,7 @@ public class NewUser extends HttpServlet {
 		//Et on l'ajoute à la liste des ID
 		if(!listID.getData().containsKey(request.getParameter("mail"))){
 			User user = new User(request.getParameter("firstname"), 
-					             request.getParameter("lastname"), 
+					             request.getParameter("lastname").toUpperCase(), 
 					             request.getParameter("mail"), 
 					             request.getParameter("phone"), 
 					             request.getParameter("address"));

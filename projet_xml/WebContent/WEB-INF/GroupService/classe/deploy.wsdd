@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GroupService WSDL service -->
+
+  <service name="Group" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://classe"/>
+      <parameter name="wsdlServiceElement" value="GroupService"/>
+      <parameter name="schemaQualified" value="http://classe"/>
+      <parameter name="wsdlServicePort" value="Group"/>
+      <parameter name="className" value="classe.Group"/>
+      <parameter name="wsdlPortType" value="Group"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getName" qname="operNS:getName" returnQName="retNS:getNameReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setName" qname="operNS:setName" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://classe" xmlns:tns="http://classe" name="getMembers" qname="operNS:getMembers" returnQName="retNS:getMembersReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setMembers" qname="operNS:setMembers" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://classe" xmlns:itns="http://classe" qname="pns:members" type="tns:ArrayOf_xsd_anyType" itemQName="itns:item"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" name="deleteFriend" qname="operNS:deleteFriend" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://classe" qname="pns:f" type="tns:Friend"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" name="addFriend" qname="operNS:addFriend" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://classe" qname="pns:f" type="tns:Friend"/>
+      </operation>
+      <parameter name="allowedMethods" value="setName addFriend getName setMembers deleteFriend getMembers"/>
+
+      <typeMapping xmlns:ns="http://classe" qname="ns:Friend" type="java:classe.Friend" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setNameResponse" type="java:classe.SetNameResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;addFriendResponse" type="java:classe.AddFriendResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getMembers" type="java:classe.GetMembers" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getNameResponse" type="java:classe.GetNameResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setName" type="java:classe.SetName" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getMembersResponse" type="java:classe.GetMembersResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;deleteFriend" type="java:classe.DeleteFriend" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;addFriend" type="java:classe.AddFriend" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setMembers" type="java:classe.SetMembers" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setMembersResponse" type="java:classe.SetMembersResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;deleteFriendResponse" type="java:classe.DeleteFriendResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://classe" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getName" type="java:classe.GetName" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

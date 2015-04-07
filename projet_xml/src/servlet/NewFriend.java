@@ -49,7 +49,7 @@ public class NewFriend extends HttpServlet {
 		//Si c'est le cas on crée un ami avec les informations du formulaire et on l'ajoute à l'utilisateur
 		if(!user.friendExist(request.getParameter("mail"))){
 				Friend newFriend = new Friend(request.getParameter("firstname"), 
-								request.getParameter("lastname"), 
+								request.getParameter("lastname").toUpperCase(), 
 								request.getParameter("mail"), 
 								request.getParameter("phone"), 
 								request.getParameter("address"));

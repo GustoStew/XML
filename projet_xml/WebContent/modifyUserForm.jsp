@@ -65,7 +65,7 @@
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
-					<input type="number" class="form-control" id="phone" name="phone"
+					<input type="text" class="form-control" id="phone" name="phone"
 						placeholder="<%= user.getPhone()%>">
 				</div>
 			</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ListUserIDService WSDL service -->
+
+  <service name="ListUserID" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://classe"/>
+      <parameter name="wsdlServiceElement" value="ListUserIDService"/>
+      <parameter name="schemaQualified" value="http://classe,http://xml.apache.org/xml-soap"/>
+      <parameter name="wsdlServicePort" value="ListUserID"/>
+      <parameter name="className" value="classe.ListUserID"/>
+      <parameter name="wsdlPortType" value="ListUserID"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://classe" name="setData" qname="operNS:setData" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://xml.apache.org/xml-soap" qname="pns:data" type="tns:Map"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://xml.apache.org/xml-soap" name="getData" qname="operNS:getData" returnQName="retNS:getDataReturn" returnType="rtns:Map" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="setData getData"/>
+
+  </service>
+</deployment>

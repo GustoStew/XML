@@ -4,7 +4,6 @@
 <html lang="fr">
 <head>
 <%@ page import="classe.*"%>
-<%@ page import="services.*" %>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map.Entry"%>
 <jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>
@@ -14,13 +13,14 @@
 </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+<link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  
+	//On envoie l'adresse mail saisie à la servlet ModifyFriendAjax pour validation
+	//Si elle ne renvoie rien alors le formulaire est envoyé
+	//Sinon on affiche une alerte, à la fermeture le formulaire sera ensuite envoyé mais ne sera pas effectif dans la servlet
   $(document).ready(function() {
 	    $('#modifyFriendForm').submit(function() {
 	        $.ajax({
@@ -97,7 +97,7 @@
 			<div class="form-group">
 				<label class="col-md-1 control-label">Téléphone</label>
 				<div class="col-md-4">
-					<input type="number" class="form-control" id="phone" name="phone"
+					<input type="text" class="form-control" id="phone" name="phone"
 						placeholder="<%= currentFriend.getPhone()%>">
 				</div>
 			</div>

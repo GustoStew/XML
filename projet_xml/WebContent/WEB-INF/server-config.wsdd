@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -66,17 +66,31 @@
    <ns1:parameter qname="ns21:friends" type="ns22:Map" xmlns:ns22="http://xml.apache.org/xml-soap"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="getPhone setFriendCount getGroupCount setAddress setPhone setFriends getLastName getMail setLastName getFriendCount setMail setFirstName getFriends getAddress setGroupCount setGroups getFirstName getGroups"/>
-  <ns1:parameter name="wsdlPortType" value="User"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://classe,http://xml.apache.org/xml-soap"/>
-  <ns1:parameter name="wsdlServicePort" value="User"/>
+  <ns1:parameter name="wsdlPortType" value="User"/>
   <ns1:parameter name="className" value="classe.User"/>
+  <ns1:parameter name="wsdlServicePort" value="User"/>
+  <ns1:parameter name="schemaQualified" value="http://classe,http://xml.apache.org/xml-soap"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://classe"/>
   <ns1:parameter name="wsdlServiceElement" value="UserService"/>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="ListUserID" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="setData" qname="ns23:setData" soapAction="" xmlns:ns23="http://classe">
+   <ns1:parameter qname="ns23:data" type="ns24:Map" xmlns:ns24="http://xml.apache.org/xml-soap"/>
+  </ns1:operation>
+  <ns1:operation name="getData" qname="ns25:getData" returnQName="ns25:getDataReturn" returnType="ns26:Map" soapAction="" xmlns:ns25="http://classe" xmlns:ns26="http://xml.apache.org/xml-soap"/>
+  <ns1:parameter name="allowedMethods" value="setData getData"/>
+  <ns1:parameter name="wsdlPortType" value="ListUserID"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://classe,http://xml.apache.org/xml-soap"/>
+  <ns1:parameter name="wsdlServicePort" value="ListUserID"/>
+  <ns1:parameter name="className" value="classe.ListUserID"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://classe"/>
+  <ns1:parameter name="wsdlServiceElement" value="ListUserIDService"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

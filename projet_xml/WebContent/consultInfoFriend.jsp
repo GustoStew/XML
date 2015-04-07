@@ -4,7 +4,6 @@
 <html lang="fr">
 <head>
 	<%@ page import="classe.*" %>
-	<%@ page import="services.*" %>
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="java.util.Map.Entry" %>
 	<jsp:useBean id="user" scope="session" class="classe.User"></jsp:useBean>

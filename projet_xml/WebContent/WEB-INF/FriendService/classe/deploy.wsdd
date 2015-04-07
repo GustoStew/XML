@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FriendService WSDL service -->
+
+  <service name="Friend" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://classe"/>
+      <parameter name="wsdlServiceElement" value="FriendService"/>
+      <parameter name="schemaQualified" value="http://classe"/>
+      <parameter name="wsdlServicePort" value="Friend"/>
+      <parameter name="className" value="classe.Friend"/>
+      <parameter name="wsdlPortType" value="Friend"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAddress" qname="operNS:getAddress" returnQName="retNS:getAddressReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setAddress" qname="operNS:setAddress" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:address" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getLastName" qname="operNS:getLastName" returnQName="retNS:getLastNameReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://classe" xmlns:tns="http://classe" name="getGroups" qname="operNS:getGroups" returnQName="retNS:getGroupsReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setGroups" qname="operNS:setGroups" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://classe" xmlns:itns="http://classe" qname="pns:groups" type="tns:ArrayOf_xsd_anyType" itemQName="itns:item"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="infoMatchWithWord" qname="operNS:infoMatchWithWord" returnQName="retNS:infoMatchWithWordReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:search" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setFirstName" qname="operNS:setFirstName" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:firstName" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getFirstName" qname="operNS:getFirstName" returnQName="retNS:getFirstNameReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setLastName" qname="operNS:setLastName" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lastName" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setMail" qname="operNS:setMail" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" name="setPhone" qname="operNS:setPhone" soapAction="">
+        <parameter xmlns:pns="http://classe" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:phone" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getMail" qname="operNS:getMail" returnQName="retNS:getMailReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://classe" xmlns:retNS="http://classe" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPhone" qname="operNS:getPhone" returnQName="retNS:getPhoneReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="infoMatchWithWord getPhone setAddress setPhone getLastName getMail setLastName setMail setFirstName getAddress setGroups getFirstName getGroups"/>
+
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setFirstNameResponse" type="java:classe.SetFirstNameResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getGroupsResponse" type="java:classe.GetGroupsResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getGroups" type="java:classe.GetGroups" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;infoMatchWithWord" type="java:classe.InfoMatchWithWord" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getFirstNameResponse" type="java:classe.GetFirstNameResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setLastName" type="java:classe.SetLastName" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getPhoneResponse" type="java:classe.GetPhoneResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getLastName" type="java:classe.GetLastName" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setAddressResponse" type="java:classe.SetAddressResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;infoMatchWithWordResponse" type="java:classe.InfoMatchWithWordResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getLastNameResponse" type="java:classe.GetLastNameResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setGroupsResponse" type="java:classe.SetGroupsResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setGroups" type="java:classe.SetGroups" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setAddress" type="java:classe.SetAddress" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setMailResponse" type="java:classe.SetMailResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getAddress" type="java:classe.GetAddress" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setLastNameResponse" type="java:classe.SetLastNameResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setPhone" type="java:classe.SetPhone" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getMailResponse" type="java:classe.GetMailResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setFirstName" type="java:classe.SetFirstName" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getFirstName" type="java:classe.GetFirstName" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getPhone" type="java:classe.GetPhone" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getMail" type="java:classe.GetMail" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;getAddressResponse" type="java:classe.GetAddressResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setMail" type="java:classe.SetMail" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://classe" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://classe" qname="ns:&gt;setPhoneResponse" type="java:classe.SetPhoneResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
